@@ -4,12 +4,12 @@
 #include <cstdlib>
 using std::cout, std::endl, std::cin;
 
-bool isPrim(const int n);
+bool isPrim(const unsigned int n);
 
 int main() {
     cout << "\n--- " << __FILE__ << " ---\n" << endl;
 
-    int n;
+    unsigned int n;
     cout << "Compute primes \nenter number n (int): ";
     cin >> n;
 
@@ -18,7 +18,7 @@ int main() {
     return EXIT_SUCCESS;
 }
 
-bool isPrim(const int n) {
+bool isPrim(const unsigned int n) {
     for (size_t i = 2; i < n; i++) {
         if (n % i == 0) {
             return false;

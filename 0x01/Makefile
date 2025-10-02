@@ -8,7 +8,7 @@
 # compiler settings
 CXX := g++
 # CXX := clang++
-CXXFLAGS := -ansi -pedantic -Wall -Wextra -Wconversion -pthread -std=c++2a
+CXXFLAGS := -ansi -pedantic -Wall -Wextra -Wconversion -pthread -std=c++23
 LDFLAGS := -lm
 
 SRC := ./snippets ./solutions
