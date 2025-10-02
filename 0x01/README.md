@@ -4,6 +4,8 @@
 
 ## Tasks
 
+You can use the file 'westrosecliff.cpp' in the 'snippets' folder as a starting point for your own solution.
+
 <hr>
 
 ### 👉 Task 'West Rose Cliff'
