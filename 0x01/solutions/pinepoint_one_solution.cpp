@@ -19,7 +19,7 @@ int main() {
 }
 
 bool isPrim(const unsigned int n) {
-    for (size_t i = 2; i < n; i++) {
+    for (unsigned int i = 2; i < n; i++) {
         if (n % i == 0) {
             return false;
         }
