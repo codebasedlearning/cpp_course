@@ -1,0 +1,25 @@
+# (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
+
+add_executable(a_uniform_init snippets/a_uniform_init.cpp)
+add_executable(b_console_io snippets/b_console_io.cpp)
+add_executable(c_primitives snippets/c_primitives.cpp)
+add_executable(d_strings snippets/d_strings.cpp)
+add_executable(e_if_for_while snippets/e_if_for_while.cpp)
+add_executable(f_functions snippets/f_functions.cpp)
+# add_executable(h_scope snippets/h_scope.cpp)
+
+add_executable(z_arrays snippets/z_arrays.cpp)
+#add_executable(e_consts snippets/e_consts.cpp)
+
+add_executable(work_for snippets/work_for.cpp)
+add_executable(work_int8 snippets/work_int8.cpp)
+add_executable(work_string snippets/work_string.cpp)
+add_executable(work_switch snippets/work_switch.cpp)
+
+add_executable(westrosecliff.cpp snippets/westrosecliff.cpp)
+
+add_executable(beverlyhollow solutions/beverlyhollow_one_solution.cpp)
+add_executable(bluecanyon solutions/bluecanyon_one_solution.cpp)
+add_executable(pinepoint solutions/pinepoint_one_solution.cpp)
+add_executable(sanborncliff solutions/sanborncliff_one_solution.cpp)
+add_executable(westrosecliff solutions/westrosecliff_one_solution.cpp)
