@@ -12,7 +12,7 @@
 #include <string_view>
 #include <cstdlib>
 
-using std::cout, std::endl, std::cin;
+using std::cout, std::endl;
 using std::string, std::string_view;
 
 // pair serves as an example of a non-trivial data structure where copying costs time and memory.

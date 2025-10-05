@@ -13,7 +13,7 @@
 #include <string_view>
 #include <cstdlib>
 
-using std::cout, std::endl, std::cin;
+using std::cout, std::endl;
 using std::string, std::string_view;
 
 struct fraction {                           // A "composite" data type. What does this remind you of?
