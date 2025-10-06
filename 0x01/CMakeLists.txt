@@ -9,10 +9,10 @@ add_executable(f_functions snippets/f_functions.cpp)
 
 add_executable(westrosecliff.cpp solutions/westrosecliff.cpp)
 
-add_executable(work_for snippets/study_for.cpp)
-add_executable(work_int8 snippets/study_int8.cpp)
-add_executable(work_string snippets/study_string.cpp)
-add_executable(work_switch snippets/study_switch.cpp)
+add_executable(study_for snippets/study_for.cpp)
+add_executable(study_int8 snippets/study_int8.cpp)
+add_executable(study_string snippets/study_string.cpp)
+add_executable(study_switch snippets/study_switch.cpp)
 
 add_executable(westrosecliff_one_solution solutions/westrosecliff_one_solution.cpp)
 add_executable(beverlyhollow_one_solution solutions/beverlyhollow_one_solution.cpp)
