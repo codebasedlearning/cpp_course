@@ -22,7 +22,7 @@ int main() {
     cout << " 1| Enter number (int): "; cin >> s;
 
     try {
-        int n = std::stoi(s);
+        int n = std::stoi(s);               // Or stoi(s, pos) to detect partial parses.
         cout << " 2|   n=" << n << endl;
 //        double d = std::stod(s);
 //        cout << " 2|   d=" << d << endl;

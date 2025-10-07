@@ -8,7 +8,7 @@ using std::cout, std::endl, std::cin;
 using std::string;
 
 void cut(double &num_a, double &num_b);
-void rotate(string& str_x, string& str_y, string & str_z);
+void rotate(string &str_x, string &str_y, string &str_z);
 
 int main() {
     cout << "\n--- " << __FILE__ << " ---\n" << endl;
@@ -38,13 +38,13 @@ int main() {
 }
 
 // cut decimal places
-void cut(double& num_a, double& num_b) {
+void cut(double &num_a, double &num_b) {
     num_a = floor(num_a);
     num_b = floor(num_b);
 }
 
 // rotate args
-void rotate(string& str_x, string& str_y, string& str_z) {
+void rotate(string &str_x, string &str_y, string &str_z) {
     string help{str_x};
     str_x = str_y;
     str_y = str_z;

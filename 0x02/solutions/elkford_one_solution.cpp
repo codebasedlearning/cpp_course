@@ -6,19 +6,19 @@
 using std::cout, std::endl, std::ostream;
 using std::string;
 
-const int dim = 3;                          // global var
+constexpr int dim = 3;                          // global var
 
 struct polynom {
     double coeffs[dim];                     // raw array
 };
 
 // shift-operator, used for output
-ostream &operator<<(ostream& os, const polynom& p) {
+ostream &operator<<(ostream &os, const polynom &p) {
     os << p.coeffs[0] << " + " << p.coeffs[1] << "x" << " + " << p.coeffs[2] << "x^2";
     return os;
 }
 
-double eval(const polynom& p, const double& x);
+double eval(const polynom &p, const double &x);
 
 int main() {
     cout << "\n--- " << __FILE__ << " ---\n" << endl;
@@ -31,6 +31,6 @@ int main() {
     return EXIT_SUCCESS;
 }
 
-double eval(const polynom& p, const double& x) {
+double eval(const polynom &p, const double &x) {
     return p.coeffs[0] + x * (p.coeffs[1] + x * p.coeffs[2]);
 }

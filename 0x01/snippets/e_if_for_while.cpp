@@ -23,7 +23,7 @@ void print_tables() {
     int r;
     do {
         cout << " 1| Input base (in [2..20]): ";
-        cin >> r;
+        cin >> r;                           // usually we need more error checks
     } while (r<=1 || r>20);
 
     // 'if'-clause, 'else' is optional
@@ -52,7 +52,7 @@ void print_tables() {
 void if_again() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    const int n = 23;
+    int n = 23;
     /*
      * init-statement in if: The scope of n2 is the if/else.
      * 
@@ -62,11 +62,13 @@ void if_again() {
      *      is different – try it.
      *    – {} are optional, but it is good practice to use them even for one-line statements.
      */
-    if (int n2=n*n; n2 > 12)
+    if (int n2=n*n; n2 > 12) {
         cout << " 1| n^2=" << n2 << endl;
-    else
+    } else {
         cout << " 2| n^2=" << n2 << endl;
-        // cout << " 2| n^2=" << n2 << endl; // error
+    }
+
+    // cout << " 2| n^2=" << n2 << endl; // error
 }
 
 int main() 

@@ -25,7 +25,7 @@ int main() {
 int fib_iter(int n) {
     if (n <= 1) { return 1; }               // looks like a guard
 
-    int fi{0};
+    int fi{0};                              // for large n use long
     int fi_minus_1{1};
     int fi_minus_2{1};
 

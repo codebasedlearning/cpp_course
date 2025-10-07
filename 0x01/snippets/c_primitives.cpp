@@ -40,7 +40,7 @@ void using_integers() {
     cout << " 2| i=" << i << ", sizeof=" << sizeof(i) << endl;
     cout << " 3| j=" << j << ", sizeof=" << sizeof(j) << endl;
 
-    long l{123456789012345};                // Commonly: 64-bit.
+    long l{123456789012345};                // Commonly: 64-bit, otherwise use long long.
     cout << " 4| l=" << l << ", sizeof=" << sizeof(l) << endl;
 
     size_t z = sizeof(int);                 // Unsigned integer type used to represent sizes and array indexes.

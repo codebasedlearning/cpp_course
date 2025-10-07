@@ -27,7 +27,7 @@ void use_raw_arrays() {
 	 *   – Elements can be accessed (read, write) using indices from 0 to dim-1.
      *     Accessing elements with index < 0 or >= dim causes undefined behavior.
 	 */
-	const int dim{3};
+	constexpr int dim{3};
 	int a[dim] { 2, 3, 5 };
 	
 	cout << " 1| dim=" << dim << endl;
@@ -38,6 +38,8 @@ void use_raw_arrays() {
 	a[2] = a[1]+a[0];
 	// a[3] = 1234;							// error?
 	cout << " 3| a[0]=" << a[0] << ", a[1]=" << a[1] << ", a[2]=" << a[2] << endl;
+
+	// Accessing a[3] is (called) undefined behavior (UB).
 }
 
 void use_arrays() {
@@ -48,7 +50,7 @@ void use_arrays() {
 	 * The array length is fixed and specified as second template parameter.
      * The at() member function performs bounds checking.
 	 */
-	const int dim{3};
+	constexpr int dim{3};
 	array<int,dim> f{5, 6, 8};
 	f[2] = 7;
 	// f[3] = 9;

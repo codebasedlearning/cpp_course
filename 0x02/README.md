@@ -59,6 +59,16 @@ Extension:
 
 <hr>
 
+### 👉 Task 'AI'
+
+What would the AI say about it?
+
+Pick your solutions and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its opinion.
+- What improvements are suggested?
+- Do they make sense?
+
+<hr>
+
 ### 👉 Task 'Couch Potato' - Recurring homework.
 
 - If you have not completed the main tasks in the exercise, complete them at home.

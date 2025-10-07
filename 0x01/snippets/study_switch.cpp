@@ -34,6 +34,7 @@ int main() {
 	{
 	case 'A':								// 'fall through', meaning it also executes the code for 'B'.
         cout << " 4| case 'A'" << endl;		// Sometimes a missing 'break' is a feature, often it's a bug.
+		[[fallthrough]];					// We can mark this behavior explicitly.
 	case 'B':
         cout << " 5| case 'B'" << endl;
 		break;

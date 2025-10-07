@@ -32,17 +32,17 @@ using std::string, std::string_view;
  * one file – production code would be split up!
  */
 
-int factorial(const int n) {
+int factorial(int n) {
 	// '?'-operator returns the second expression if the (first) condition is true, otherwise the third.
 	return (n>1) ? n*factorial(n-1) : 1;
 }
 
-int fib(const int n);
+int fib(int n);
 
 void print_numbers() {
 	cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-	const int n=5;
+	int n=5;
 	cout << " 1| factorials and Fibonaccis until i=" << n << ":" << endl;
 
 	int i{0};
@@ -61,8 +61,8 @@ int main()  {
 	return EXIT_SUCCESS;
 }
 
-// Here is the definition of the function 'fib'.
-int fib(const int n) {
+// Here is the recursive definition of the function 'fib' (compare this version again iterative one).
+int fib(int n) {
 	/*
 	 * Note:
 	 *    – 'result' is only valid within the function, or more generally within the {} block (scope).

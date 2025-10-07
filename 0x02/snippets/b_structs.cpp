@@ -21,33 +21,53 @@ struct fraction {                           // A "composite" data type. What doe
 	int denom;
 };
 
-void use_struct() {
+void init_structs() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
 	/*
-	 * A variable of type 'fraction', initialized with n=1, d=2. Note that the variable clearly
-	 * exists without needing 'new' or similar.
-	 */
-	fraction f{1,2};
-	// fraction f(1,2);						// no matching ctor
-	// fraction f{.denom=3,.num=1};         // valid, but wrong order
+     * A variable of type 'fraction', member access as 'usual'.
+     * What are the values of f.num and f.denom?
+     *
+     * Note that the variable exists without needing 'new' or similar!
+     */
 
-	// Accessing members, the elements of the fraction.
+	fraction f1;
+	cout << " 1| f1.num=" << f1.num << ", f1.denom=" << f1.denom << endl;
+
+	fraction f2{1,2};
+	cout << " 2| f2.num=" << f2.num << ", f2.denom=" << f2.denom << endl;
+
+	fraction f3(3,4);
+	cout << " 3| f3.num=" << f3.num << ", f3.denom=" << f3.denom << endl;
+
+	fraction f4{.denom=6,.num=5};			// valid, but wrong evaluation order
+	cout << " 4| f4.num=" << f4.num << ", f4.denom=" << f4.denom << endl;
+
+	// fraction f5();						// Where is the problem?
+	// cout << " 5| f5.num=" << f5.num << ", f5.denom=" << f5.denom << endl;
+}
+
+void using_structs() {
+	cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
+
+	fraction f{1,2};
 	cout << " 1| f.num=" << f.num << ", f.denom=" << f.denom << endl;
 
-	// Changing the components n and d of f.
+	// Changing the components of f.
 	f.num = 5;
 	f.denom = 8;
 	cout << " 2| f.num=" << f.num << ", f.denum=" << f.denom << endl;
 
 	// A change of data type, a cast.
-	cout << " 3| f=" <<  (double)f.num/(double)f.denom << endl;
+	// cout << " 3| f=" <<  (double)f.num/(double)f.denom << endl;	// old casts
+	cout << " 3| f=" <<  static_cast<double>(f.num)/static_cast<double>(f.denom) << endl;
 }
 
 int main() {
 	cout << "\n--- " << __FILE__ << " ---" << endl;
 
-	use_struct();
+	init_structs();
+	using_structs();
 
     return EXIT_SUCCESS;
 }

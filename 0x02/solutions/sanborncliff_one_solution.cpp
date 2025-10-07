@@ -19,6 +19,7 @@ int main() {
     }
     cout << endl;
 
+    // copy arr_a to arr_b (later we can use other ways)
     double arr_b[dim];
     for (size_t i = 0; i < dim; ++i) {
         arr_b[i] = arr_a[i];

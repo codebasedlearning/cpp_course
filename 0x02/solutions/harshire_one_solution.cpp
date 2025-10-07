@@ -14,7 +14,7 @@ struct stack {
     size_t next{0};
 };
 
-ostream &operator<<(std::ostream& os, const stack& st) {
+ostream &operator<<(std::ostream &os, const stack &st) {
     std::string delim;
     for (size_t i = 0; i < stack_dim; i++) {
         os << delim << st.buffer[i];
@@ -28,9 +28,33 @@ struct stack_exception {
     char level;
 };
 
-int pop(stack& st);
-void push(stack& st, int n);
-void reset(stack& st);
+/*
+ * later we may use something like this
+ *
+ *   #include <stdexcept>
+ *   struct stack_error : std::runtime_error {
+ *       using std::runtime_error::runtime_error; // inherit constructor(s)
+ *   };
+ *
+ * or
+ *
+ *   class stack_error : public std::runtime_error {
+ *   public:
+ *       enum class level : char { Info='I', Warn='W', Error='E' };
+ *
+ *       stack_error(std::string msg, level lvl = level::Error)
+ *           : std::runtime_error(std::move(msg)), lvl_(lvl) {}
+ *
+ *       level severity() const noexcept { return lvl_; }
+ *
+ *   private:
+ *       level lvl_;
+ *   };
+ */
+
+int pop(stack &st);
+void push(stack &st, int n);
+void reset(stack &st);
 
 int main() {
     cout << "\n--- " << __FILE__ << " ---" << endl;
@@ -55,7 +79,7 @@ int main() {
 
         push(st, 7);
         cout << "-> st: " << st << endl;
-    } catch (const stack_exception& e) {
+    } catch (const stack_exception &e) {
         cout << "-> error: " << e.what << endl;             // better: cerr
     }
 
@@ -75,28 +99,28 @@ int main() {
 
         num = pop(st);
         cout << "-> st: " << st << ", num: " << num << endl;
-    } catch (const stack_exception& e) {
+    } catch (const stack_exception &e) {
         cout << "-> error: " << e.what << endl;             // better: cerr
     }
 
     return EXIT_SUCCESS;
 }
 
-int pop(stack& st) {
+int pop(stack &st) {
     if (st.next <= 0) {
         throw stack_exception{"stack empty", 'E'};
     }
     return st.buffer[--st.next];
 }
 
-void push(stack& st, int n) {
+void push(stack &st, int n) {
     if (st.next >= stack_dim) {
         throw stack_exception{"stack full", 'E'};
     }
     st.buffer[st.next++] = n;
 }
 
-void reset(stack& st) {
+void reset(stack &st) {
     for (size_t i = 0; i < stack_dim; ++i) {
         st.buffer[i] = 0;
     }

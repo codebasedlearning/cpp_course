@@ -22,8 +22,8 @@ struct pair {
 };
 
 void init_val(pair p);
-void init_ref(pair& p);
-void read_const_ref(const pair& p);
+void init_ref(pair &p);
+void read_const_ref(const pair &p);
 
 void call_by_value() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
@@ -72,8 +72,8 @@ void init_val(pair p) {
     cout << " b|   p.key=" << p.key << ", p.value=" << p.value << endl;
 }
 
-// In this form it is call-by-ref (&), i.e. the calling parameter p is set to 0 and no copy is created.
-void init_ref(pair& p) {                                    // (C)
+// In this form it is call-by-ref (&), i.e. p is an alias and no copy is created; important for large objects.
+void init_ref(pair &p) {
     cout << " c|   p.key=" << p.key << ", p.value=" << p.value << endl;
     p.key = p.value = 0;
     cout << " d|   p.key=" << p.key << ", p.value=" << p.value << endl;
@@ -88,6 +88,6 @@ void init_ref(pair& p) {                                    // (C)
  * Convention: If a parameter should not be modified, it should be declared as const.
  * Otherwise, if not const, assume the parameter will be modified.
  */
-void read_const_ref(const pair& p) {
+void read_const_ref(const pair &p) {
     cout << " e|   p.key=" << p.key << ", p.value=" << p.value << endl;
 }

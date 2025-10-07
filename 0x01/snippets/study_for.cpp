@@ -36,12 +36,14 @@ void loop_with_labels() {
 
     cout << " 1| goto (5..10):" << endl;
     int i=5;
-    label:                                  // A label named 'label' is defined. This can be jumped to using 'goto'.
+label:                                      // A label named 'label' is defined. This can be jumped to using 'goto'.
         cout << " 2|   i=" << i << endl;
     if ( i++<10)
         goto label;                         // Jump to the label.
 
-    // What is the problem with this construct and why is it not commonly used? See the discussion above.
+    // What is the problem with this construct?
+    // Note that using 'goto' is generally discouraged because it can lead to code that is hard to understand
+    // and maintain. Expect hard fights and loss of points if you ever use it...
 }
 
 int main() {

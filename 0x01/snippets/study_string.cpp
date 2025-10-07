@@ -52,12 +52,14 @@ int main() {
 
     string rep1{"Exam"};
     pos=s.find(rep1);
-    s.replace(pos,rep1.size(),"Sam");                       // 'replace' text in the string at a position for a given length with new text.
+    if (pos!=string::npos)
+        s.replace(pos,rep1.size(),"Sam");                   // 'replace' text in the string at a position for a given length with new text.
     cout << "12| s.replace(...), s='" << s << "'" << endl;
 
     string rep2{"!"};
     pos=s.find(rep2);
-    s.erase(pos,rep2.size());                               // 'erase' deletes text in the string at a position for a given length.
+    if (pos!=string::npos)
+        s.erase(pos,rep2.size());                           // 'erase' deletes text in the string at a position for a given length.
     cout << "13| s.erase(...), s='" << s << "'" << endl;
 
     s.insert(0,"XXL-");                                     // 'insert' inserts new text at a position.

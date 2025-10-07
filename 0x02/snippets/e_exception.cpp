@@ -38,7 +38,7 @@ void catch_numbers() {
     cout << " 1| throw int 23" << endl;
     try {
         throw 23;
-    } catch (double d) {
+    } catch (double d) {                                    // sometimes suggested: const double&
         cout << " 2|   catch double, d: " << d << endl;
     } catch (int n) {
         cout << " 3|   catch int, n: " << n << endl;
@@ -54,7 +54,7 @@ void catch_runtime() {
     try {
         readFile();
         // [...]
-    } catch (const runtime_error& e) {                      // (D)
+    } catch (const runtime_error &e) {
         cout << " 2|   catch runtime_error, e: '" << e.what() << "'" << endl;
     } catch (...) {
         cout << " 3|   catch ..." << endl;
@@ -75,7 +75,8 @@ int main() {
 int readFile() {
     try {
         cout << " a|   throw runtime_error" << endl;
-        // There are some predefined exceptions that can be used.
+        // There are some predefined exceptions that can be used, e.g.
+        // invalid_argument, out_of_range, domain_error, overflow_error, underflow_error
         throw runtime_error("file not found");
     } catch (...) {
         cout << " b|   catch ..." << endl;

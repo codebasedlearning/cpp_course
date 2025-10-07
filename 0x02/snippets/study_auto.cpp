@@ -18,7 +18,13 @@ using std::string, std::string_view;
 void auto_primitives() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    //From the literal or result type, the data type can be inferred (derived from the right side, type deduction)
+    /*
+     * From the literal or result type, the data type can be inferred (derived from the right side,
+     * type deduction).
+     *
+     * But avoid 'auto' for everything, it is an anti-pattern – use it when it improves clarity.
+     */
+
     auto f{1.23f};                          // here 'float'
     auto d{2.34};                           // here 'double'
 
@@ -42,7 +48,7 @@ void auto_references() {
     auto i = 1;
 
     // 'auto' with reference. Note: There is no 'reference'-type, this corresponds to an 'int'.
-    auto& r{i};
+    auto &r{i};
     cout << " 1| r=" << r << ", sizeof(r)=" << sizeof(r) << endl;
 
     r = 2;

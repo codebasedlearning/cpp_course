@@ -13,9 +13,11 @@
 #include <string>
 #include <string_view>
 #include <cstdlib>
+#include <cstdint>
 
 using std::cout, std::endl, std::cin;
 using std::string, std::string_view;
+using std::uint8_t, std::uint16_t, std::int32_t, std::uint64_t;
 
 int main() {
     cout << "\n--- " << __FILE__ << " ---" << endl;
@@ -40,7 +42,7 @@ int main() {
     int8_t i1{3};
     cout << " 6| i1=" << +i1 << ", sizeof(int8_t)=" << sizeof(int8_t) << endl;
 
-    long double ld{1};                      // type 'long double', floating point number, 16 bytes,
+    long double ld{1};                      // type 'long double', floating point number; often 16 bytes, but varies by platform
     cout << " 7| ld=" << ld << ", sizeof(long double)=" << sizeof(long double) << endl;
       
     return EXIT_SUCCESS;

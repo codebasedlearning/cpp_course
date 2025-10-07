@@ -16,7 +16,8 @@
 using std::cout, std::endl;
 using std::string, std::string_view;
 
-// Compiler instruction: Ignore warning for uninitialized variables (for didactic purposes here).
+// Compiler instruction: Ignore warning for uninitialized variables – for didactic purposes here!!!
+// Never do this in productive code.
 #pragma GCC diagnostic ignored "-Wuninitialized"
 
 // Introduce uniform initialization in a separate function. More on functions later.
@@ -83,6 +84,9 @@ int main() {
  * or
  *      int a = 1.2;
  *      int b{1.2};
+ *
+ * Const-correctness is a core building block of C++ design: express intent by defaulting
+ * to const and relaxing only when mutation is required.
  *
  *  const ≠ immutable
  *    – const applies to the object you see, not necessarily the whole reachable state. It is

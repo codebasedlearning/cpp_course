@@ -1,10 +1,11 @@
 # (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
-add_executable(a_references snippets/a_references.cpp)
+add_executable(a_consts snippets/a_consts.cpp)
 add_executable(b_structs snippets/b_structs.cpp)
-add_executable(c_call_by_ref snippets/c_call_by_ref.cpp)
-add_executable(d_exception snippets/d_exception.cpp)
-add_executable(e_arrays snippets/e_arrays.cpp)
+add_executable(c_references snippets/c_references.cpp)
+add_executable(d_call_by_ref snippets/d_call_by_ref.cpp)
+add_executable(deexception snippets/e_exception.cpp)
+add_executable(f_arrays snippets/f_arrays.cpp)
 
 add_executable(study_auto snippets/study_auto.cpp)
 add_executable(study_stoi_stod snippets/study_stoi_stod.cpp)

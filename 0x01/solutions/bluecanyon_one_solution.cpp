@@ -30,8 +30,11 @@ int main() {
     return EXIT_SUCCESS;
 }
 
+//
 int pot(const int base, int pow) {
-    // calc b^n using while
+    // calc b^n using while; note that there are faster algorithms
+    if (pow < 0) throw std::domain_error{"negative exponent"};
+    if (pow < 1) return 1;
     int res{base};
     while (pow > 1) {
         res *= base;
