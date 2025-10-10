@@ -54,27 +54,11 @@ void read_from_console() {
     assert(n > 0);
 }
 
-/*
- * This is a new feature from C++23 - print with string interpolation output. For now,
- * we'll stick with cout until this feature is widely available. If your compiler
- * complains about this, comment out the entire block.
- */
-#include <print>
-using std::println;
-
-void use_println() {
-    cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
-
-    int n{23};
-    println(" 1| here comes the number {}, also squared {}", n, n*n);   // It is not like Python f-String... but they work on it.
-}
-
 int main() {
     cout << "\n--- " << __FILE__ << " ---" << endl;
 
     print_to_console();
     read_from_console();
-    use_println();
 
     return EXIT_SUCCESS;
 }
