@@ -13,6 +13,7 @@ add_executable(study_for snippets/study_for.cpp)
 add_executable(study_int8 snippets/study_int8.cpp)
 add_executable(study_string snippets/study_string.cpp)
 add_executable(study_switch snippets/study_switch.cpp)
+add_executable(study_cin snippets/study_cin.cpp)
 
 add_executable(westrosecliff_one_solution solutions/westrosecliff_one_solution.cpp)
 add_executable(beverlyhollow_one_solution solutions/beverlyhollow_one_solution.cpp)

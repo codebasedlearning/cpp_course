@@ -10,3 +10,4 @@ set(CMAKE_CXX_EXTENSIONS OFF)           # Improves portability
 add_subdirectory(0x00)
 add_subdirectory(0x01)
 add_subdirectory(0x02)
+add_subdirectory(0x03)

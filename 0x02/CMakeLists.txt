@@ -4,7 +4,7 @@ add_executable(a_consts snippets/a_consts.cpp)
 add_executable(b_structs snippets/b_structs.cpp)
 add_executable(c_references snippets/c_references.cpp)
 add_executable(d_call_by_ref snippets/d_call_by_ref.cpp)
-add_executable(deexception snippets/e_exception.cpp)
+add_executable(d_exception snippets/e_exception.cpp)
 add_executable(f_arrays snippets/f_arrays.cpp)
 
 add_executable(study_auto snippets/study_auto.cpp)
