@@ -60,7 +60,7 @@ string doppelt(const string& s) { return s+s; }
 void auto_returns() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    // type inderence also works for return types of a function.
+    // type inference also works for return types of a function.
     // Question: Why is the string 24 or 32 bytes in size?
     auto s = doppelt("01234");
     cout << " 1| s='" << s << "', sizeof(s)=" << sizeof(s) << endl;

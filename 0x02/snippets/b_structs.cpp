@@ -40,7 +40,7 @@ void init_structs() {
 	fraction f3(3,4);
 	cout << " 3| f3.num=" << f3.num << ", f3.denom=" << f3.denom << endl;
 
-	fraction f4{.denom=6,.num=5};			// valid, but wrong evaluation order
+	fraction f4{.denom=6,.num=5};			// valid, but wrong evaluation order (always the declaration order)
 	cout << " 4| f4.num=" << f4.num << ", f4.denom=" << f4.denom << endl;
 
 	// fraction f5();						// Where is the problem?

@@ -41,7 +41,7 @@ void call_by_ref() {
     pair p{3,4};
 
     cout << " 1| ref: vorher p.key=" << p.key << ", p.value=" << p.value << endl;
-    init_ref(p);                                            // (C)
+    init_ref(p);
     cout << " 2| ref: nachher p.key=" << p.key << ", p.value=" << p.value << endl;
 }
 
@@ -51,7 +51,7 @@ void call_by_const_ref() {
     pair p{5,6};
 
     cout << " 1| const_ref: vorher p.key=" << p.key << ", p.value=" << p.value << endl;
-    read_const_ref(p);                                      // (D)
+    read_const_ref(p);
     cout << " 2| const_ref: nachher p.key=" << p.key << ", p.value=" << p.value << endl;
 }
 
