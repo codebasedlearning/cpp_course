@@ -64,7 +64,7 @@ void references_syntax() {
     n = 23;
     cout << " 1| n=" << n << ", m1=" << m1 << ", m2=" << m2 << ", m3=" << m3 << endl;
 
-    int& k1{n}, k2;                         // misleading
+    int& k1{n}, k2{n};                      // misleading
     n = 42;
     cout << " 2| n=" << n << ", k1=" << k1 << ", k2=" << k2 << endl;
 

@@ -46,6 +46,12 @@ void using_constexpr() {
      * evaluated at compile time when called with constant arguments; otherwise
      * usable at runtime too.
      *
+     * The compiler can constant-fold any expression as an optimization, but
+     * constexpr guarantees it’s semantically legal to do so.
+     * Even if a compiler could inline an expression and compute it at
+     * compile time — it’s not required to, and the language must stay portable
+     * even for compilers that don’t.
+     *
      * const on a function’s return type almost never does what you want.
      * Returning a const value type (e.g. const int) is discarded and doesn’t
      * prevent assignment to the receiving variable.
@@ -56,14 +62,14 @@ void using_constexpr() {
      */
     constexpr int j{2};
     // constexpr int k = mal3(3);       // compiler error
-    constexpr int k = mal4(3);
+    constexpr int l = mal4(3);
     // constexpr int l = mal4(mal3(3)); // compiler error
 
-    cout << " 1| j=" << j << ", k=" << k << endl;
+    cout << " 1| j=" << j << ", l=" << l << endl;
 
     int m;
     cout << " 2| Input number m (int): "; cin >> m;
-    cout << " 3| m=" << m << ", mal4(m)=" << mal4(m) << endl;
+    cout << " 3| m=" << m << ", mal4(m)=" << mal4(m) << endl;   // called at runtime
 }
 
 consteval int ten() { return 10; }

@@ -77,7 +77,7 @@ int readFile() {
         cout << " a|   throw runtime_error" << endl;
         // There are some predefined exceptions that can be used, e.g.
         // invalid_argument, out_of_range, domain_error, overflow_error, underflow_error
-        throw runtime_error("file not found");
+        throw runtime_error{"file not found"};
     } catch (...) {
         cout << " b|   catch ..." << endl;
         // Note here that the exception is caught and then rethrown.
