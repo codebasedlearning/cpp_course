@@ -66,8 +66,8 @@ int main() {
 
     const contakt &kontaktref{contakt1};
     unsigned int age{kontaktref.age()};
-    std::string name{kontaktref.name()};
-    std::cout << " 7| Name=" << name << ", Age=" << age << std::endl;
+    string name{kontaktref.name()};
+    cout << " 7| Name=" << name << ", Age=" << age << endl;
 
     return EXIT_SUCCESS;
 }

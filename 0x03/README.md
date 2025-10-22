@@ -113,6 +113,39 @@ Extension:
 
 <hr>
 
+### Task 'Coral Creek'
+
+Sometimes, a value is optional: for example, a temperature sensor that may not yet 
+have produced data.
+
+Instead of using 'magic numbers' like -1 to mean 'no value,' we wrap the integer in 
+a small class `OptionalInt` that knows whether it’s set (similar to `std::optional<int>`). 
+
+Implement a class `OptionalInt` — an integer that may or may not be present. In detail, you need:
+- A default constructor that creates an unset value.
+- A constructor that takes an integer and sets the value.
+- A copy-constructor.
+- A destructor (it should print a message).
+- A function `hasValue` and a boolean operator that check whether the value is set.
+- A getter `getValue` and an int operator that return the value if the value is set, 
+  otherwise it throws a `runtime_error`.
+- A getter `getValueOr(int fallback)` that returns the value if the value is set, otherwise 
+  it returns `fallback`.
+- A setter `setValue` that sets the value.
+- A function `clear` that clears the value.
+- A stream insertion operator `operator<<` that prints the value if the value is set, 
+  otherwise it prints 'none'.
+
+Write test code for the class.
+
+Extension preview (i.e. you need to figure it out yourself):
+
+- Make it template-based `MyOptional`.
+- Track a 'version' counter each time a value is set.
+- Implement equality operators `==`, `!=`.
+
+<hr>
+
 ### 👉 Task 'AI'
 
 What would the AI say about it?
