@@ -87,13 +87,15 @@ class set_card {
             : id_{id}, name_{std::move(name)}, number_{std::move(number)}, age_{age} { }
 
 public:
-    // 'static' marks a class function, i.e. there is no 'this' available.
+    // Preview: 'static' marks a class function, i.e. there is no 'this' available.
     // This is a factory method, hiding the actual creation process.
     static set_card make(
         const int id,
         string name, string number,
-        const unsigned int age) {
-        return set_card(id, std::move(name), std::move(number), age);
+        const unsigned int age)
+    {
+//        return set_card(id, std::move(name), std::move(number), age);
+        return {id, std::move(name), std::move(number), age};
     }
 
     // '[[nodiscard]]' suppress compiler warnings in case the return value is not used.

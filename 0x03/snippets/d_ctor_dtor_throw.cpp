@@ -20,7 +20,7 @@ class street {
 public:
     string name;
 
-    street(const string &name) : name{name} {
+    explicit street(const string &name) : name{name} {
         cout << " a|   street::ctor(), street=" << name << endl;
     }
 

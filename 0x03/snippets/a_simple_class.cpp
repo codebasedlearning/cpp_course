@@ -40,7 +40,8 @@ public:
      * This avoids double initialization.
      */
     complex() : re{0}, im{0} {
-        cout << " a|   complex::ctor(), re=" << re << ", im=" << im << endl; // or this->re, or (*this).im
+        cout << " a|   complex::ctor(), re=" << re << ", im=" << im << endl;
+        // or this->re, or (*this).im
     }
 
     /*
@@ -51,7 +52,7 @@ public:
     }
 
     /*
-     * Ctor with two argument.
+     * Ctor with two arguments.
      */
     complex(const double re, const double im) : re{re}, im{im} {
         cout << " c|   complex::ctor(re,im), re=" << re << ", im=" << im << endl;

@@ -126,7 +126,7 @@ void understand_locals() {
     int k{99};                              // eiffel, and only the int, exists between n and k.
     cout << " 4| k=" << k << ", &k=" << &k << endl;
 
-    eiffel = tower{4};                      // No 'new' instance (or 'reference'). Just a new int value.
+    eiffel = tower{4};                      // No 'new' instance (or 'reference'), just a new int value on stack.
     cout << " 5| floors=" << eiffel.floors << ", &eiffel=" << &eiffel << endl;
 
     const tower &magic = eiffel;            // No instance is created, compare the addresses.

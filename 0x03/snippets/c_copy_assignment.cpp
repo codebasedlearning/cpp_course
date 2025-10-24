@@ -35,7 +35,7 @@ public:
         cout << " c|   ctor(number&), n=" << n << endl;
     }
 
-    // Copy assignment operator, copy state from existing instances.
+    // Copy assignment operator, copy state from existing instance.
     number& operator=(const number &a) {
         n = a.n + 100;
         cout << " d|   op=(number&), from n=" << a.n << ", to n=" << n << endl;
@@ -64,7 +64,7 @@ void create_numbers() {
     cout << " 2| before copying" << endl;
 
     a0 = a4;                                // copy assignment, a4.no = 15
-    a1 = 23;                                // What happens here?
+    a1 = 23;                                // What happens here (again)?
 
     cout << " 3| end of function" << endl;
 }
@@ -73,7 +73,6 @@ class mobile {
 public:
     string number;
 
-    // explicit mobile(const string &number) : number{number} {
     explicit mobile(const string &number) : number{number} {
         cout << " a|     mobile::ctor(number&), number=" << number << endl;
         // why not 'this->number = number' instead of member-initializer list?
