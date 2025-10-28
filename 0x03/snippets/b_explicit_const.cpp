@@ -50,7 +50,7 @@ void create_numbers() {
     cout << " 3| after setting num: n=" << num.n << endl;
 }
 
-void print_numbers() {
+void print_number() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
     cout << " 1| before creating num" << endl;
@@ -137,7 +137,7 @@ int main() {
     cout << "\n--- " << __FILE__ << " ---" << endl;
 
     create_numbers();
-    print_numbers();
+    print_number();
     create_and_print_towers();
     understand_locals();
 

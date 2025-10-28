@@ -39,7 +39,7 @@ int factorial(int n) {
 
 int fib(int n);
 
-void print_numbers() {
+void print_number() {
 	cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
 	int n=5;
@@ -56,7 +56,7 @@ void print_numbers() {
 int main()  {
 	cout << "\n--- " << __FILE__ << " ---" << endl;
 
-	print_numbers();
+	print_number();
 
 	return EXIT_SUCCESS;
 }
