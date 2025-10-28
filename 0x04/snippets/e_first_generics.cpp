@@ -3,8 +3,6 @@
 /*
  * This file demonstrates C++ generics through several examples:
  *  – Template function 'join' for printing containers
- *  – Generic sum function with multiple template parameters
- *  – size_in_bits template function with bool specialization
  *  – point class template with x,y coordinates
  *  – my_array class template implementing fixed-size array
  *  – my_pair class template with pair-making function.

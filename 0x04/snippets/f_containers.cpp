@@ -1,7 +1,11 @@
 // (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
 /*
- *
+ * This file demonstrates standard container examples like
+ *  – pairs and tuples (as heterogeneous containers),
+ *  – array/vector/deque/list (as contiguous or linked storage),
+ *  – set/map (as ordered associative containers), and
+ *  – unordered_set/unordered_map (as hash-based containers).
  */
 
 #include <iostream>
@@ -28,14 +32,12 @@ using namespace std::string_literals;
 
 void using_pairs_and_tuples();
 void using_containers();
-void understand_capacity();
 
 int main() {
     cout << "\n--- " << __FILE__ << " ---" << endl;
 
     using_pairs_and_tuples();
     using_containers();
-    understand_capacity();
 
     return EXIT_SUCCESS;
 }
@@ -135,16 +137,4 @@ void using_containers() {
     unordered_map um{ pair{1,"One"s}, pair{2, "Two"s} };
     um[3] = "Three";
     cout << " 8| um={" << join(um) << "}" << endl;
-}
-
-void understand_capacity() {
-    cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
-
-    vector v{0,1};                          // same as vector<int>
-    cout << " 1| v.size=" << v.size() << ", v=[" << join(v) << "], v.capacity=" << v.capacity() << endl;
-
-    for (int i{2}; i < 10; ++i) {
-        v.push_back(i);
-        cout << " a| v.size=" << v.size() << ", v=[" << join(v) << "], v.capacity=" << v.capacity() << endl;
-    }
 }

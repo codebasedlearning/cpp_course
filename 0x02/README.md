@@ -72,7 +72,7 @@ Pick your solutions and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its 
 ### 👉 Task 'Couch Potato' - Recurring homework.
 
 - If you have not completed the main tasks in the exercise, complete them at home.
-- Study `work_stoi_stod` and `work_trailingreturn`.
+- Study `study_auto`, `study_stoi_stod` and `study_trailingreturn`.
 
 <hr>
 

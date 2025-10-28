@@ -74,7 +74,7 @@ Pick one solution and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its op
 ### 👉 Task 'Couch Potato' - Recurring homework.
 
 - If you have not completed the main tasks in the exercise, complete them at home.
-- Study `work_int8`, `work_string`, `work_switch`, `work_for`.
+- Study `study_cin`, `study_for`, `study_int8`, `study_println`, `study_string`, `study_switch`.
 
 <hr>
 
