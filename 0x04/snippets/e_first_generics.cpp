@@ -49,10 +49,16 @@ int main() {
 template <typename T>
 string join(const T &container) {
     ostringstream os;
-    string_view delim;                      // "delimiter string" idiom
+    // string_view delim;                      // "delimiter string" idiom
+    // for (const auto &x : container) {
+    //     os << delim << x;
+    //     delim = ",";                         // save here, but never construct a string_view from a temporary.
+    // }
+    bool first = true;
     for (const auto &x : container) {
-        os << delim << x;
-        delim = ",";
+        if (!first) os << ',';
+        os << x;
+        first = false;
     }
     return os.str();
 }
@@ -83,7 +89,7 @@ const math_type PI{3.1415926};
 template<typename T>
 struct point {
     using value_type = T;
-    value_type x, y;
+    value_type x{}, y{};
 
     // This works for all points, no extra template necessary.
     friend ostream& operator<<(ostream& os, const point& p) {

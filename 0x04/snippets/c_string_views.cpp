@@ -14,10 +14,11 @@
 using std::cout, std::endl, std::cin;
 using std::string, std::string_view;
 using namespace std::string_literals;
+using namespace std::string_view_literals;
 
+void using_string_literal();
 void using_string_views();
 void lifetime_issues();
-void using_string_literal();
 
 void print(string_view sv);
 string_view extract_this(const string &s);
@@ -25,11 +26,29 @@ string_view extract_this(const string &s);
 int main() {
     cout << "\n--- " << __FILE__ << " ---" << endl;
 
+    using_string_literal();
     using_string_views();
     lifetime_issues();
-    using_string_literal();
 
     return EXIT_SUCCESS;
+}
+
+/*
+ * Sometimes the literals 's' and 'sv' come handy.
+ */
+void using_string_literal() {
+    cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
+
+    auto text = "This is a text (but no string).";  // const char* (C-string)
+    cout << " 1| text='" << text << "'" << endl;
+
+    // using namespaces needed for operator""s and operator""sv:
+
+    auto str = "This is a string literal."s;        // string
+    cout << " 2| str ='" << str << "'" << endl;
+
+    auto sv = "This is a string view literal."sv;   // string_view
+    cout << " 2| sv  ='" << sv << "'" << endl;
 }
 
 /*
@@ -41,9 +60,12 @@ int main() {
 void using_string_views() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    cout << " 1| "; print("simple c-string");
-    cout << " 2| "; print(string("simple string"));
+    cout << " 1| "; print("simple c-string");                   // const char*
+    cout << " 2| "; print(string("simple string"));             // temp. string — OK: lives to end of call
     cout << " 3| "; print(string_view("simple string_view"));
+
+    // cout << " 2| "; print("simple string"s);
+    // cout << " 3| "; print("simple string_view"sv);
 
     const string s{"This is a long sentence!"};
     cout << " 4| substr='" << s.substr(10, 4) << "' (with copy)" << endl;
@@ -86,18 +108,4 @@ string_view extract_this(const string &s) {
     const string_view word = string_view(t).substr(0, t.find(' '));
     cout << " b|   word='" << word << "'" << endl;
     return word;
-}
-
-/*
- * Sometimes the string literal 's' comes handy.
- */
-void using_string_literal() {
-    cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
-
-    auto text = "This is a text (but no string).";  // check type of text, it is a so-called C-string
-    cout << " 1| text='" << text << "'" << endl;
-
-    // needed for operator""s: using namespace std::string_literals;
-    auto str = "This is a string literal"s;         // check type of str, a string
-    cout << " 2| str='" << str << "'" << endl;
 }

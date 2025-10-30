@@ -67,5 +67,11 @@ Pick your solutions and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its 
 
 ### 👉 Comprehension Check
 
-- I have understood ...
+- I know different containers, namely?
+- I can search, delete, add and remove elements.
+- I know range-based for loops with and without copy and with iterators.
+- I know the differences between set/map and unordered_set/map.
+- I know the differences between vector/list/deque.
+- I know what a string_view is and what dangers lurk.
+- I can implement an output operator.
 

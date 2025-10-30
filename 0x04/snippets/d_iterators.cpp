@@ -19,9 +19,6 @@
 using std::cout, std::endl, std::cin, std::ostream;
 using std::string, std::string_view;
 using std::vector, std::array, std::set;
-using std::find;
-using std::ostream, std::ostringstream;
-using std::begin, std::end;
 
 void raw_arrays_again();
 void traversing_arrays_and_vectors();
@@ -118,7 +115,7 @@ void using_range_based_for() {
     // range-based for also works for sets. Note: s contains elements 1,2,3 as it is a set.
     set s{1, 1, 2, 3};
     cout << " 3| s={";
-    for (const auto &n : s)                 // range-based for, n const copy, so
+    for (const auto &n : s)                 // range-based for, n const reference, so
         cout << " " << n;                   // n=1 is not allowed.
     cout << " }" << endl;
 
@@ -214,7 +211,7 @@ void range_based_for_bsc() {
     // raw array
     int r[] = {2, 3, 5, 7};
     cout << " 8| r=[";
-    for (auto it = begin(r); it != end(r); ++it)    // This works also for raw arrays.
+    for (auto it = std::begin(r); it != std::end(r); ++it)  // This works also for raw arrays.
         cout << " " << *it;
     cout << " ]" << endl;
 
@@ -223,7 +220,7 @@ void range_based_for_bsc() {
      * with views and pipelines, but it is not yet part of the curriculum.
      */
     cout << " 9| v=[";
-    for (auto it = std::ranges::begin(s); it != std::ranges::end(s); ++it)
+    for (auto it = std::ranges::begin(v); it != std::ranges::end(v); ++it)
         cout << " " << *it;
     cout << " ]" << endl;
 }
@@ -240,11 +237,11 @@ void working_with_iterators() {
 
     // version 2
     auto it2 = std::find(begin(v),end(v),2);
-    cout << " 2| find-version 2: 2 in v: " << (it2 != v.end()) << endl;
+    cout << " 2| find-version 2: 2 in v: " << (it2 != end(v)) << endl;
 
     // version 3
     auto it3 = std::ranges::find(v,2);
-    cout << " 3| find-version 3: 2 in v: " << (it3 != v.end()) << endl;
+    cout << " 3| find-version 3: 2 in v: " << (it3 != std::ranges::end(v)) << endl;
 
     // version 4 - special
     set s{1, 1, 2, 3};
@@ -253,7 +250,7 @@ void working_with_iterators() {
     cout << " 4| find-version s: 2 in s: " << (its != s.end()) << endl;
 
     // Iterator arithmetic example: it is ok for so-called random-access iterators
-    // to step by k, but only if distance(it, v.end()) >= k
+    // to step by k, but only if distance(it, v.end()) >= k (see also  also std::advance)
     cout << " 5| v::2=[";
     for (auto it = begin(v); it != end(v); it+=2) // try with +=3
         cout << " " << *it;

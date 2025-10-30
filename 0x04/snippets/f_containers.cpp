@@ -80,10 +80,11 @@ ostream& operator<<(ostream &os, const pair<K,V> &x) {
 template <typename T>
 string join(const T &container) {
     ostringstream os;
-    string_view delim;
+    bool first = true;
     for (const auto &x : container) {
-        os << delim << x;
-        delim = ",";
+        if (!first) os << ',';
+        os << x;
+        first = false;
     }
     return os.str();
 }
@@ -100,7 +101,7 @@ void using_containers() {
     v.push_back(4);
     cout << " 2| v=[" << join(v) << "]" << endl;
 
-    // double-ended queue, segmented dynamic array, random-access,efficient push_front/back.
+    // double-ended queue, segmented dynamic array, random-access, efficient push_front/back.
     deque<int> d{1, 2, 3};
     d.push_front(0);
     d.push_back(4);
@@ -138,3 +139,6 @@ void using_containers() {
     um[3] = "Three";
     cout << " 8| um={" << join(um) << "}" << endl;
 }
+
+/*
+ */
