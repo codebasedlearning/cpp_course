@@ -47,9 +47,9 @@ int main() {
  * (Older code often uses 'template<class T>')
  */
 template <typename T>
-string join(const T &container) {
+string join(const T &container) {              // since C++20 also (const auto &container).
     ostringstream os;
-    // string_view delim;                      // "delimiter string" idiom
+    // string_view delim;                      // "delimiter string" idiom.
     // for (const auto &x : container) {
     //     os << delim << x;
     //     delim = ",";                         // save here, but never construct a string_view from a temporary.
