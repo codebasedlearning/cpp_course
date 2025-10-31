@@ -139,6 +139,3 @@ void using_containers() {
     um[3] = "Three";
     cout << " 8| um={" << join(um) << "}" << endl;
 }
-
-/*
- */
