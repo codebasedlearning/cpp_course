@@ -1,6 +1,6 @@
 [© 2025, A.Voß, FH Aachen, codebasedlearning.dev](mailto:info@codebasedlearning.dev)
 
-Note: This is a test exam task, which is why it is given in German.
+Note: This is part of a test exam task, which is why it is given in German.
 
 # Tasks – Exam 1
 
