@@ -192,7 +192,7 @@ void range_based_for_bsc() {
 
     // vector v
     cout << " 5| v=[";
-    for (auto it = std::begin(v); it != std::end(v); ++it)    // auto, std::begin, std::end
+    for (auto it = std::begin(v); it != std::end(v); ++it)
         cout << " " << *it;                         // *it=1 allowed
     cout << " ]" << endl;
 
