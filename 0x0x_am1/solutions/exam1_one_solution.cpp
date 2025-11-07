@@ -81,7 +81,7 @@ public:
     //  - Rückgabe korrekt 1P
     // temp. Obj. beim Holen geduldet, dann Einfügen notwendig
     index_type add(index_type id, const vector_type& data ) {
-        if (id>=max_id)
+        if (id>max_id)
             throw runtime_error("id too large");
 
         auto &set = map[id];

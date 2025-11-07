@@ -35,7 +35,7 @@ b) [2P] Definieren Sie eine globale Variable `next_id` vom `index_type` und
 initialisieren Sie sie mit 1.
 
 c) [2P] Definieren Sie eine globale Funktion `make_id`, die `next_id` zurückgibt
-und die globale Variable um eins erhöht. Die Funktion ist dafür zuständig,
+und dann die globale Variable um eins erhöht. Die Funktion ist dafür zuständig,
 eine Art eindeutige ID zu generieren. Sie hat keine Parameter und soll möglichst 
 effizient programmiert sein.
 
@@ -60,7 +60,7 @@ ein Vektor existiert.
 Der erste Parameter der Funktion ist eine ID vom Typ `index_type` und der 
 zweite Parameter ein Vektor von Strings (s.o.).
 
-Falls die ID größer oder gleich der `max_id` ist, werfen Sie einen `runtime_error` 
+Falls die ID größer als die `max_id` ist, werfen Sie einen `runtime_error` 
 und fügen keine Daten hinzu.
 
 `add` gibt die ID zurück.
