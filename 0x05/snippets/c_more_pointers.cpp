@@ -66,9 +66,11 @@ void pointers_to_pointers() {
     int n{15};
     cout << " 1|  &n=" << &n << ",  n=" << n << endl;
 
+    // a pointer to an int
     int *p{&n};
     cout << " 2|  &p=" << &p << ",  p=" << p << ",  *p=" << *p << endl;
 
+    // a pointer to a pointer to an int
     int **pp{&p};
     cout << " 3| &pp=" << &pp << ", pp=" << pp << ", *pp=" << *pp << ", **pp=" << **pp << endl;
 
@@ -87,8 +89,11 @@ void pointers_to_pointers() {
 void multiple_pointers() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    int n{15};
-    int* p, q;                              // what types?
+    // What types? (hint: hover)
+    int* p, q;
+
+    // To declare two pointers in one line, use this.
+    int *r, *s;
 }
 
 void void_pointers() {
@@ -100,15 +105,19 @@ void void_pointers() {
     int *p{&n};
     cout << " 2| p=" << p << ", *p=" << *p << endl;
 
+    // This is a pure address, no type associated.
     void *q{p};
     cout << " 3| q=" << q << ", *q=?" << endl;
 
-    // auto x = *q; // ?
+    // It is unclear how many bytes it should read from memory and how to interpret the data.
+    // auto x = *q;
 }
 
 void null_pointers() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
     int *p{nullptr};
+
+    // Dereferencing a null pointer results in an error.
     int n = *p;
 }

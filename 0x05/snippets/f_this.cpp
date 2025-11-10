@@ -29,7 +29,7 @@ class One {
 
 public:
     void print() const {
-        // 'this' is the pointer on the instance from type C*
+        // 'this' is the pointer on the instance from type C* – but where does it come from?
         cout << " a| this=" << this << ", n=" << this->n << " or n=" << (*this).n << endl;
     }
 

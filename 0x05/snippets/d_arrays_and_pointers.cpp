@@ -1,8 +1,8 @@
 // (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
 /*
- * This code demonstrates the relationship between arrays and pointers, including:
- *  – Basic array operations and memory addresses,
+ * This code demonstrates the relationship between arrays and pointers, including
+ *  – basic array operations and memory addresses,
  *  – pointer arithmetic and array traversal,
  *  – different data type sizes affecting pointer arithmetic,
  *  – dangerous/illegal pointer operations.
@@ -53,12 +53,23 @@ void arrays_and_pointers() {
 
     constexpr int dim{3};
 
+    /*
+     * Pointer arithmetic means that integers can be added to pointers, and instead of simply
+     * counting up the memory address, the size of the data type is added.
+     * Similarly, pointers can be incremented, or the difference of two typed pointers
+     * can be formed, which is also calculated in number of elements rather than bytes.
+     *
+     * Note that any array type is implicitly convertible to a pointer to its first element.
+     */
+
     // int case
 
     int a[dim]={1,22,333};
 
     cout << " 1| a=[" << a[0] << "," << a[1] << "," << a[2] << "]" << endl;
     cout << " 2| &a[0]=" << &a[0] << ", &a[1]=" << &a[1] << ", &a[2]=" << &a[2] << endl;
+
+    // Compare the addresses p-1, p+0, p+1, or ++p
 
     int *p = a;
     cout << " 3| p+0=" << p+0 << ", p+1=" << p+1 << ", p+2=" << p+2 << endl;
@@ -73,7 +84,7 @@ void arrays_and_pointers() {
 
     p = a;
     cout << " 6| a=[" << *(p++);
-    for (; p-a < dim; ++p)
+    for (; p-a < dim; ++p)                  // p-a is also pointer arithmetic
         cout << "," << *p;
     cout << "]" << endl;
 
@@ -107,6 +118,8 @@ void arrays_and_pointers() {
 void pointer_math() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
+    // Different types and pointers.
+
     int n{15};
     int *p{&n};
     cout << " 1| &n=" << &n << ", p-1=" << p-1 << ", p=" << p << ", p+1=" << p+1 << ", p+2=" << p+2 << endl;
@@ -119,11 +132,13 @@ void pointer_math() {
     float *r{&f};
     cout << " 3| &f=" << &f << ", r-1=" << r-1 << ", r=" << r << ", r+1=" << r+1 << ", r+2=" << r+2 << endl;
 
+    // char pointers (C-strings) in combination with operator<< are special.
+
     char c{'a'};
     char *s{&c};
     cout << " 4| &c=" << &c << ", s-1=" << s-1 << ", s=" << s << ", s+1=" << s+1 << ", s+2=" << s+2 << endl;
 
-    cout << " 5| Lirum larum." << endl;     // special ostream-char* operator for C-strings.
+    cout << " 5| Lirum larum." << endl;
     cout << " 4| &c=" << static_cast<void*>(&c)
          << ", s-1=" << static_cast<void*>(s-1)
          << ", s=" << static_cast<void*>(s)

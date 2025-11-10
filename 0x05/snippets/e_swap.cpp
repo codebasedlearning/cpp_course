@@ -1,7 +1,7 @@
 // (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
 /*
- * This snippet demonstrates the three ways to implement a swap function:
+ * This snippet demonstrates three ways to implement a swap function:
  *  – swap1: pass by value, no effect on original variables,
  *  – swap2: pass by reference, swaps original variables,
  *  – swap3: pass by pointer, swaps original variables.
