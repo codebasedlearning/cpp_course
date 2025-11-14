@@ -7,6 +7,10 @@ add_executable(d_arrays_and_pointers snippets/d_arrays_and_pointers.cpp)
 add_executable(e_swap snippets/e_swap.cpp)
 add_executable(f_this snippets/f_this.cpp)
 
+# comment in for sanitizer
+# target_compile_options(d_arrays_and_pointers PRIVATE -fsanitize=address -fno-omit-frame-pointer -g)
+# target_link_options(d_arrays_and_pointers PRIVATE -fsanitize=address)
+
 add_executable(copperview_one_solution solutions/copperview_one_solution.cpp)
 add_executable(kengate_one_solution solutions/kengate_one_solution.cpp)
 add_executable(mcallenspring_one_solution solutions/mcallenspring_one_solution.cpp)
