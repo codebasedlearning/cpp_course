@@ -133,6 +133,7 @@ void pointer_math() {
     cout << " 3| &f=" << &f << ", r-1=" << r-1 << ", r=" << r << ", r+1=" << r+1 << ", r+2=" << r+2 << endl;
 
     // char pointers (C-strings) in combination with operator<< are special.
+    // Note that this may not work with a sanitizer.
 
     char c{'a'};
     char *s{&c};
