@@ -15,7 +15,7 @@
 using std::cout, std::endl;
 using std::string, std::string_view;
 
-void understanding_this();
+void understanding_locals();
 void pointers_to_pointers();
 void multiple_pointers();
 void void_pointers();
@@ -24,7 +24,7 @@ void null_pointers();
 int main() {
     cout << endl << "--- " << __FILE__ << " ---" << endl << endl;
 
-    understanding_this();
+    understanding_locals();
     pointers_to_pointers();
     multiple_pointers();
     void_pointers();
@@ -33,7 +33,7 @@ int main() {
     return EXIT_SUCCESS;
 }
 
-void understanding_this() {
+void understanding_locals() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
     // view locals in 'Memory View'

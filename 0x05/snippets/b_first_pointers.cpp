@@ -46,12 +46,12 @@ void view_locals_on_stack() {
     int n;
     // Breakpoint here, view memory "&k"
 
-    cout << " 3| &k=" << &k << ", k=" << k << endl;
-    cout << " 4| &l=" << &l << ", l=" << l << endl;
-    cout << " 5| &m=" << &m << ", m=" << m << endl;
+    cout << " 2| &k=" << &k << ", k=" << k << endl;
+    cout << " 3| &l=" << &l << ", l=" << l << endl;
+    cout << " 4| &m=" << &m << ", m=" << m << endl;
 
     // Breakpoint here, enter 'a' in memory in 'n' (0x61), 'Step Over', 'Console' -> n=97
-    cout << " 6| &n=" << &n << ", n=" << dec << n << endl;
+    cout << " 5| &n=" << &n << ", n=" << dec << n << endl;
 }
 
 void understanding_pointers() {
