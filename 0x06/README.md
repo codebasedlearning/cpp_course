@@ -73,7 +73,7 @@ Pick your solutions and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its 
 ### 👉 Task 'Couch Potato' - Recurring homework.
 
 - If you have not completed the main tasks in the exercise, complete them at home.
-- Study `study_more_generics`, `study_more_iterators` and `study_vector`.
+- Study `study_2d_arrays` and `study_alloc_and_free`.
 
 <hr>
 
@@ -81,6 +81,7 @@ Pick your solutions and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its 
 
 - I know commands to allocate and free objects on the heap.
 - I understand the difference between a raw and a smart pointer.
+- I know the difference between `delete` and `delete[]`.
 - I know how to use `make_unique`.
 - I know the concept of 'ownership' and 'lifetime'.
-- RAII means?
+- I know what RAII is.
