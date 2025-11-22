@@ -4,6 +4,7 @@ add_executable(a_const snippets/a_const.cpp)
 add_executable(b_new_delete snippets/b_new_delete.cpp)
 add_executable(c_unique_ptr snippets/c_unique_ptr.cpp)
 add_executable(d_smallbuffer_example snippets/d_smallbuffer_example.cpp)
+add_executable(e_addressof snippets/e_addressof.cpp)
 
 add_executable(study_alloc_and_free snippets/study_alloc_and_free.cpp)
 add_executable(study_2d_arrays snippets/study_2d_arrays.cpp)
