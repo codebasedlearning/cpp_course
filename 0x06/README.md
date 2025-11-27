@@ -9,7 +9,7 @@
 ### 👉 Task 'Reeds Field'
 
 Working with C-strings.
-- Create a C-string with arbitrary text, e.g. `char* str = "hallo";`
+- Create a C-string with arbitrary text, e.g. `char *str = "hallo";`
 - Define a pointer to `char` and iterate through the C-string (including the null character)
   to output the pointer value, the character that the pointer points to, and
   the ASCII value.
@@ -26,8 +26,8 @@ Work with pointers, arrays and unique_ptr.
   and returns the length of the C-string (excluding the null character).
 - Test `length`.
 - Implement a function `reverse` that receives a C-string, requests dynamic memory 
-  with `new`, copies the passed C-string in reversed order (including the null character) 
-  to that location, and returns the pointer to the new memory.
+  with `new`, copies the passed C-string in reversed order to that location, 
+  and returns the pointer to the new memory (remember the trailing null character).
 - Test `reverse`.
 - Copy `reverse` into a new function `make_reverse` returning a `unique_ptr` to
   a char-array containing the reversed string.
