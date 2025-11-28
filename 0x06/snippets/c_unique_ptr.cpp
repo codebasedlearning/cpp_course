@@ -46,8 +46,8 @@ struct my_pair {
 
     my_pair() {
         cout << " a| -> ctor (" << key << "," << value << ")" << endl;
-
     }
+
     my_pair(int k, int v) : key{k}, value{v} {
         cout << " b| -> ctor (" << key << "," << value << ")" << endl;
     }
@@ -138,7 +138,7 @@ void using_smart_pointers() {
     // p = q;                               // not allowed
 
     // Transfer ownership to q.
-    q = move(p);
+    q = std::move(p);
     cout << " 2| p:" << p.get() << ", q:" << q.get() << endl;
 
     // Assign a new value.
@@ -160,12 +160,12 @@ void using_smart_pointers() {
     delete r;
 }
 
-// Observe a unique_ptr without changing ownership (no reset, no move out).
+// Observe a unique_ptr without changing ownership (read-only borrow, no reset, no move out).
 void print_pair_v1(const unique_ptr<my_pair>& p) {
     cout << " d| -> out1 (" << p->key << "," << p->value << ")" << endl;
 }
 
-// Borrow a unique_ptr, it *could* modify/reset the pointer (change ownership).
+// Borrow a unique_ptr, it *could* modify/reset the pointer (write borrow, change ownership).
 void print_pair_v2(unique_ptr<my_pair>& p) {
     cout << " e| -> out2 (" << p->key << "," << p->value << ")" << endl;
 }
@@ -229,3 +229,32 @@ void unique_ptr_array_version() {
     // unique_ptr<my_pair[]> a{ new my_pair[3] };
     auto a = make_unique<my_pair[]>(3);
 }
+
+/*
+ * We are conceptually doing something like a Rust borrow:
+ *  - No ownership transfer
+ *  - Caller keeps ownership
+ *  - Callee gets access
+ *
+ * But C++ does not enforce exclusivity, no-aliasing guarantees, or lifetime safety.
+ * You can still:
+ *  - Create multiple references to the same unique_ptr
+ *  - Store references that outlive the owner (UB time bomb)
+ *  - Move the unique_ptr while a reference still exists
+ *  - Delete it early
+ *  - Pass raw pointers everywhere
+ *
+ * Rust borrow rules (enforced at compile time):
+ *  - Either:
+ *    * 1 mutable reference
+ *    * 0 immutable references
+ *  - Or:
+ *    * Unlimited immutable references
+ *    * 0 mutable references
+ *  - No references may outlive the owned value
+ *  - No use-after-free
+ *  - No data races
+ *  - Move rules enforced
+ *
+ *  C++ references and pointers do none of this.
+ */

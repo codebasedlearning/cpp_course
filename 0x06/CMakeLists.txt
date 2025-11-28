@@ -15,5 +15,8 @@ add_executable(rosepond_one_solution solutions/rosepond_one_solution.cpp)
 add_executable(mcallenspringsmart_one_solution solutions/mcallenspringsmart_one_solution.cpp)
 
 # comment in for sanitizer
+target_compile_options(c_unique_ptr PRIVATE -fsanitize=address -fno-omit-frame-pointer -g)
+target_link_options(c_unique_ptr PRIVATE -fsanitize=address)
+
 target_compile_options(southbirdsgale_one_solution PRIVATE -fsanitize=address -fno-omit-frame-pointer -g)
 target_link_options(southbirdsgale_one_solution PRIVATE -fsanitize=address)

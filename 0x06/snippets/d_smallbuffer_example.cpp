@@ -66,7 +66,7 @@ public:
         copy(init.begin(), init.end(), _data);
     }
 
-    // Copy ctor
+    // Copy ctor (not optimized fpr DRY, could use some delegation pattern here)
     SmallBuffer(const SmallBuffer &other)
         : _size(other._size),
           _capacity(other._size <= N ? N : other._size),
@@ -74,7 +74,7 @@ public:
         copy(other._data, other._data + _size, _data);
     }
 
-    // Copy assignment (any issues here?)
+    // Copy assignment, any issues here? (also not optimized)
     SmallBuffer& operator=(const SmallBuffer &other) {
         if (this == &other) return *this;   // self-assignment guard
 
