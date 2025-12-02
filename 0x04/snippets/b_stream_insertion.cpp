@@ -90,12 +90,12 @@ void print_number() {
 }
 
 /*
- *
  * Associativity isn’t a global rule — it’s defined per operator. An operator comes with
  * two key properties:
  *  – Precedence – which operators bind tighter (e.g., * before +).
  *  – Associativity – how operators of the same precedence group.
  */
+
 void more_on_chaining() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
