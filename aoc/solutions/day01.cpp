@@ -25,7 +25,7 @@ L82
 
 /*
  * Anonymous namespace (or 'unnamed namespace').
- * Contents are only visible within this .cpp file (similar to 'static'.
+ * Contents are only visible within this .cpp file (similar to 'static').
  * Works also for types and functions.
  */
 namespace {
