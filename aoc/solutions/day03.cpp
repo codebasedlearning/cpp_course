@@ -23,19 +23,18 @@ constexpr array examples =  {
  */
 
 int64_t calcJoltage(const string_view line, const size_t digits) {
-    size_t picked{0};
-    int64_t result{0};
+    size_t pos{0};          // just for readability, one can solve this with first and it only
+    int64_t result{0};      // instead of collecting chars
     for (size_t j=1; j<=digits; ++j) {
-        const auto first = line.begin() + picked;
-        const auto last  = line.begin() + (line.size() - (digits - j));
+        const auto first = line.begin() + pos;
+        const auto last  = line.begin() + (line.size() - (digits - j)); // except the remaining digits
         const auto it = std::ranges::max_element(first, last);
-        picked = std::distance(line.begin(), it);
 
         // The hand-woven-loop below needs about twice the time than the std-max-version above (on my computer)...wow!
-        // for (size_t i = picked; i < line.size()-(digits-j); ++i) // except the remaining digits
-        //    if (line[i] > line[picked]) picked=i;
-        result = result * 10 + (line[picked]-'0');                  // instead of string-ops
-        ++picked;
+        // for (size_t i = pos; i < line.size()-(digits-j); ++i)
+        //    if (line[i] > line[pos]) pos=i;
+        result = result * 10 + (*it-'0');               // this is: line[pos]
+        pos = std::distance(line.begin(), it) + 1;
     }
     return result;
 }
