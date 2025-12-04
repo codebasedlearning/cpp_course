@@ -6,7 +6,7 @@ target_include_directories(aoc_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/solutions)
 
 # apply to all targets below
 link_libraries(aoc_lib)
-add_compile_options(-O3 -Wall -Wextra)
+#add_compile_options(-O3 -Wall -Wextra)
 
 # all days
 add_executable(day01 solutions/day01.cpp)

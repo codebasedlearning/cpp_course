@@ -100,8 +100,8 @@ namespace aoc {
     // 2D-stuff-still under construction
 
     struct RC {
-        int row;
-        int col;
+        size_t row;
+        size_t col;
     };
 
     template <typename T>

@@ -6,8 +6,6 @@
  *  – Assignment from an int or another number object
  *  – Chained assignments (a=b=c).
  *
-*
- *
  * Associativity isn’t a global rule — it’s defined per operator. An operator comes with
  * two key properties:
  *  – Precedence – which operators bind tighter (e.g., * before +).
@@ -80,7 +78,6 @@ struct number {
     }
 
     friend number operator+(const number &lhs, const number &rhs) {
-        //number res{lhs};
         cout << " c| -> op+(lhs,rhs), lhs=" << lhs.n << ", rhs=" << rhs.n << endl;
         return number{lhs.n + rhs.n};
     }
@@ -111,12 +108,13 @@ void assign_values() {
     n.operator=(m.operator=(5));
     cout << " 4| n=" << n << ", m=" << m << endl;
 
+    // Execution from left to right (left-associative)
     number x{1}, y{2}, z{4};
     n = x + y + z;
     n = (x + y) + z;
+    operator+(operator+(x,y),z);
     cout << " 5| n=" << n << endl;
 
-    // Execution from left to right (left-associative) -> (cout << " 5| ") << 999
-    cout << " 6| " << 999 << endl;          //
-    operator<<(cout, " 6| ").operator<<(999).operator<<(endl);
+    // cout << " 6| " << 999 << endl;
+    // operator<<(cout, " 6| ").operator<<(999).operator<<(endl);
 }

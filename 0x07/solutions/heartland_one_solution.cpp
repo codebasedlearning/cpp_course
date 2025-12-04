@@ -15,7 +15,8 @@ using std::string, std::string_view;
 using std::runtime_error;
 using std::array;
 
-template <typename T, size_t DIM> class fastvector {
+template <typename T, size_t DIM>
+class fastvector {
     using value_type = T;
 
     static constexpr size_t dim = DIM;
@@ -40,7 +41,7 @@ public:
 
     value_type& operator[](size_t index) { return vector.at(index); }
 
-    friend ostream &operator<<(ostream &os, const fastvector &fvec) {
+    friend ostream& operator<<(ostream &os, const fastvector &fvec) {
         string delim;
 
         os << "<";

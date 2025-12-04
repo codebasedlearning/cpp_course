@@ -1,7 +1,10 @@
 // (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
 /*
- *
+ * This snippet demonstrates operator overloading:
+ *  – Implementing function call operator () for polynomial evaluation
+ *  – Implementing index operator [] for element access
+ *  – Implementing stream output operator <<.
  */
 
 #include <iostream>
@@ -16,24 +19,24 @@ using std::string, std::string_view;
 using std::invalid_argument;
 using std::array;
 
-void assign_values();
+void eval_polynom();
 
 int main() {
     cout << endl << "--- " << __FILE__ << " ---" << endl << endl;
 
-    assign_values();
+    eval_polynom();
 
     return EXIT_SUCCESS;
 }
 
 constexpr int dim{4};
 
-class polynom {                                             // (A)
+class polynom {
 public:
     array<double,dim> coefficients;
 
-    //  double eval(double x) {
-    double operator()(const double x) const {                           // (B)
+    // double eval(double x) { ...
+    double operator()(const double x) const {
         double r{0.0};
         for (int i=dim-1; i>=1; --i)
             r = x*(coefficients[i]+r);
@@ -41,8 +44,8 @@ public:
         return r;
     }
 
-    //  double at(size_t i) const {
-    double operator[](const size_t i) const {                     // (C)
+    // double at(size_t i) const { ...
+    double operator[](const size_t i) const {
         if (i>=dim)
             throw invalid_argument("index too large");
         return coefficients[i];
@@ -50,7 +53,7 @@ public:
 
     // from C++23: double operator[](size_t i, size_t j)
 
-    //  double& at(size_t i) {                                  // (D)
+    // double& at(size_t i) { ...
     double& operator[](const size_t i) {
         if (i>=dim)
             throw invalid_argument("index too large");
@@ -65,25 +68,20 @@ ostream& operator<<(ostream& os, const polynom& p) {
     return os;
 }
 
-void assign_values() {
+void eval_polynom() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    polynom p{1.0,2.0,3.0,4.0};
-    cout << "01|    p=" << p << endl;
+    polynom p{1.0,2.0,3.0,4.0};             // make it const, what happens?
 
-    cout << "-----" << endl;
+    cout << " 1| p=" << p << endl;
 
-    cout << "02|    p(1)=" << p(1.0) << endl;               // (F)
-    cout << "03|    p(2)=" << p(2.0) << endl;
+    cout << " 2| p(1)=" << p(1.0) << endl;
+    cout << " 3| p(2)=" << p(2.0) << endl;
 
-    cout << "-----" << endl;
+    cout << " 4| p[3]=" << p[3] << endl;
 
-    polynom q1{4.0,5.0,6.0}, q2{1.0,2.0,3.0}, q3;
-    cout << "04|    q1=" << q1 << endl;
-    cout << "05|    q2=" << q2 << endl;
+    p[2] = 12.0;
+    cout << " 5| p[2]=" << p[2] << endl;
 
-    q3 = q1;                                             // (G)
-    cout << "06|    q3=" << q3 << endl;
-
-    //cout << "07|    q3[1,2] " << q3[1,2] << endl;           // (H)
+    cout << " 6| p=" << p << endl;
 }

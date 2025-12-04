@@ -20,17 +20,20 @@ Operators
     - `s=1;` sets current state to the second state.
     - `++s;` increments the current state by one.
     - `--s;` decrements the current state by one. Wrap around to start/end on over/underflow.
+    - `s()` returns the current index.
     - `s[s()]` returns the current state (string).
     - `s.clear();` deletes all states.
     - `cout << s;` outputs a vector with all states.
-- Test your code thoroughly.
+- Test your code.
+
+<hr>
 
 ### 👉 Task 'Heart Land'
 
 Operators
 
-- Implement a generic class `fastvector` that models a mathematical vector of coefficients with a fixed dimension that
-  can be used for calculations.
+- Implement a (generic) class `fastvector` that models a mathematical vector of coefficients with a fixed dimension that
+  can be used for calculations. Use `int` if you want to skip the generic part.
 - Internally use an `array` of fixed length. The dimension and type are determined by template parameters.
 - Fundamentally, addition, subtraction and scalar multiplication should be possible. Of course, individual coefficients
   can be read and set.
@@ -43,7 +46,9 @@ Operators
     - `-v` negates all coefficients.
     - `v[i]` reads or writes the i-th coefficient.
     - `cout << v;` outputs the coefficients of `v`.
-- Test your code thoroughly.
+- Test your code.
+
+<hr>
 
 ### 👉 Task 'Deerwoods'
 
@@ -63,8 +68,9 @@ Operators
     - `!n` tests for `null` and is true if not.
     - `(int)n;` converts to the concrete data type, here `int`.
     - `cout << n;` outputs the value of `n`.
-- Test your code thoroughly.
+- Test your code.
 
+<hr>
 
 ### 👉 Task 'AI'
 
@@ -79,7 +85,6 @@ Pick your solutions and ask a GenAI-Tool of your choice (e.g., ChatGPT) for its 
 ### 👉 Task 'Couch Potato' - Recurring homework.
 
 - If you have not completed the main tasks in the exercise, complete them at home.
-- Study `study_2d_arrays` and `study_alloc_and_free`.
 
 <hr>
 

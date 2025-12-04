@@ -37,7 +37,7 @@ public:
         return *this;
     }
 
-    states &operator++() {
+    states& operator++() {
         if (values.empty()) {
             throw runtime_error("no states");
         }
@@ -65,9 +65,9 @@ public:
         return *this;
     }
 
-    size_t operator()() { return current; }
+    size_t operator()() const { return current; }
 
-    string &operator[](size_t index) {
+    string& operator[](const size_t index) {
         if (index >= values.size()) {
             throw runtime_error("index too big");
         }

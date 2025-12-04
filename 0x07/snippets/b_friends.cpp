@@ -62,15 +62,15 @@ public:
     }
 
     void push_front(const int value) {
-        const auto n = new node(value);     // LinkedList can create Nodes and
-        n->next = head;                     // access Node::next
+        const auto n = new node(value);     // LinkedList can create nodes and
+        n->next = head;                     // access node::next
         head = n;
     }
 
     friend ostream& operator<<(ostream& os, const LinkedList& list) {
         os << "[ ";
         for (const node *n = list.head; n != nullptr; n = n->next) {
-            os << n->payload << " ";        // LinkedList can access Node::payload
+            os << n->payload << " ";        // LinkedList can access node::payload
         }
         return os << "]";
     }

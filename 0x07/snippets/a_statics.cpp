@@ -68,7 +68,7 @@ struct number {
      *  - Does not require an object to access.
      *  - Must be defined outside the class too (except if it’s inline or constexpr).
      *  - Shared by all instances.
-     *  - No hidden this pointer.
+     *  - No hidden 'this' pointer.
      */
 private:
     static int count_;
@@ -86,8 +86,8 @@ void count_instances() {
     number a0{magicNr};
     cout << " 1| instances: " << number::count() << endl;
     {
-        number a1{99};
-        number a2{a1};
+        const number a1{99};
+        const number a2{a1};
         cout << " 2| instances: " << number::count() << endl;
 
         auto p{make_unique<number>(secret)};

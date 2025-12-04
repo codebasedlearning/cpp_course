@@ -50,19 +50,18 @@
 using std::cout, std::endl, std::ostream, std::istream;
 using std::string, std::string_view;
 
-void create_and_assign();
 void use_operators();
 
 int main() {
     cout << endl << "--- " << __FILE__ << " ---" << endl << endl;
 
-    create_and_assign();
     use_operators();
 
     return EXIT_SUCCESS;
 }
 
-class int3 {                                // class represents a number between 0 and 2, i.e., everything mod 3.
+// class represents a number between 0 and 2, i.e., everything mod 3.
+class int3 {
     unsigned int n{0};
 
 public:
@@ -89,7 +88,6 @@ public:
     // as member -> where is the problem?
 
     int3 operator*(const unsigned int rhs) const {
-        //int3 res{*this};
         return int3{n*rhs};
     }
 
@@ -108,7 +106,6 @@ public:
         ++(*this);
         return tmp;
     }
-
 };
 
 // free operators
@@ -122,7 +119,7 @@ int3 operator+(int3 lhs, const int3 &rhs) noexcept {
      return lhs+=rhs;
 }
 
-int3 operator+(const int3 &lhs, unsigned int rhs) noexcept {
+int3 operator+(const int3 &lhs, const unsigned int rhs) noexcept {
     return lhs+int3{rhs};
 }
 
@@ -153,25 +150,14 @@ ostream& operator<<(ostream& os, const int3& i) {
     os << static_cast<unsigned int>(i);
     return os;
 }
+
 istream& operator>>(istream& is, int3& n) {
     //is >> n.vorname;
     //is >> n.nachname;
-    is >> n.n;
+    unsigned int tmp;
+    is >> tmp;
+    n = tmp;
     return is;
-}
-
-void create_and_assign() {
-    cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
-
-    // create, assign, op-int, op<<
-    int3 n{}, m{4}, k{m};
-    cout << " 1| n=" << n << ", m=" << m << ", k=" << k << endl;
-
-    k = 5;
-    n = k;
-    cout << " 2| n=" << n << ", m=" << m << ", k=" << k << endl;
-
-    cout << " 3| int(n)=" << static_cast<unsigned int>(n) << endl;
 }
 
 void use_operators() {
@@ -195,4 +181,6 @@ void use_operators() {
     cout << " 5| k=" << k << endl;
 
     // k = 5 * n; // missing
+
+    // etc.
 }
