@@ -17,6 +17,7 @@
 #include <memory>
 #include <vector>
 #include <array>
+#include <cstddef>
 #include <unordered_map>
 #include <unordered_set>
 #include <regex>
@@ -28,6 +29,7 @@
 #include <functional>
 #include <cstdlib>
 #include <cassert>
+
 
 using std::string, std::string_view, std::format, std::from_chars;
 using std::cout, std::endl, std::setw, std::stringstream;
@@ -95,47 +97,51 @@ namespace aoc {
         return format("{}", x);
     }
 
-    // 2D-stuff - still under construction
+    // 2D-stuff-still under construction
 
     struct RC {
         int row;
         int col;
     };
 
+    template <typename T>
     class Field {
     public:
-        using value_type = char;
-        using container_type = vector<vector<value_type>>;
+        using value_type = T;
 
-        container_type data;
+        Field() : rows_(0), cols_(0) {}
+        Field(const size_t rows, const size_t cols) : rows_(rows), cols_(cols), data_(rows * cols) {}
 
-        static Field of(const Lines &lines) {
-            Field grid;
-            grid.data.reserve(lines.size());
+        [[nodiscard]] size_t rows() const noexcept { return rows_; }
+        [[nodiscard]] size_t cols() const noexcept { return cols_; }
 
-            for (const auto& line : lines) {
-                if (auto s = strip(line); !s.empty())
-                    grid.data.emplace_back(s.begin(), s.end());
-            }
-            return grid;
-        }
+        value_type& operator[](const size_t row, const size_t col) noexcept { return data_[linear_index(row, col)]; }
+        const value_type& operator[](const size_t row, const size_t col) const noexcept { return data_[linear_index(row, col)]; }
 
-        [[nodiscard]] int rows() const { return static_cast<int>(data.size()); }
-        [[nodiscard]] int cols() const { return data.empty() ? 0 : static_cast<int>(data[0].size()); }
+        value_type& operator[](const RC& rc) noexcept { return (*this)[rc.row,rc.col]; }
+        const value_type& operator[](const RC& rc) const noexcept { return (*this)[rc.row,rc.col]; }
 
-        value_type operator[](const size_t r, const size_t c) const { return data[r][c]; }
-        value_type& operator[](const size_t r, const size_t c) { return data[r][c]; }
+        value_type* data() noexcept { return data_.data(); }
+        [[nodiscard]] const value_type* data() const noexcept { return data_.data(); }
 
-        value_type operator[](const RC& rc) const { return data[rc.row][rc.col]; }
-        value_type& operator[](const RC& rc) { return data[rc.row][rc.col]; }
-        
-        void print() const {
-            for (const auto& row : this->data) {
-                for (char c : row) cout << c;
-                cout << '\n';
-            }
-        }
+    private:
+        [[nodiscard]] size_t linear_index(const size_t row, const size_t col) const noexcept { return col + row * cols_; }
+
+        size_t rows_;
+        size_t cols_;
+        vector<T> data_;
     };
+
+    template <typename T>
+    void print(const Field<T> &field) {
+        for (size_t row = 0; row < field.rows(); ++row) {
+            for (size_t col = 0; col < field.cols(); ++col)
+                cout << field[row,col];
+            cout << '\n';
+        }
+    }
+
+    Field<char> toField(const Lines &lines);
 
 }
 
@@ -143,6 +149,7 @@ using aoc::solutions;
 using aoc::print, aoc::measure;
 using aoc::Blocks, aoc::Lines, aoc::toBlocks, aoc::toLines;
 using aoc::toNumber, aoc::toString;
+using aoc::toField;
 
 using aoc::RC, aoc::Field;
 

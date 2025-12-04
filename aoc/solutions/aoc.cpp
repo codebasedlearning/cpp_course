@@ -56,11 +56,34 @@ namespace aoc {
         return toBlocks(in);
     }
 
-    Lines toLines(int day) { return toBlocks(day)[0]; }
+    Lines toLines(const int day) { return toBlocks(day)[0]; }
 
     Lines toLines(const string &example) { return toBlocks(example)[0]; }
 
+    Field<char> toField(const Lines &lines) {
+        // guard: check format
+        size_t rows{0};
+        size_t cols{0};
+        for (const auto &line : lines) {
+            if (line.empty()) continue;
+            ++rows;
+            if (cols == 0)
+                cols = line.size();
+            else if (cols != line.size())
+                throw runtime_error("inconsistent cols");
+        }
+        if (rows==0 || cols==0)
+            throw runtime_error("no data");
 
+        Field<char> field(rows, cols);
 
+        size_t dst_row = 0;
+        for (const auto &line : lines) {
+            if (line.empty()) continue;
+            std::copy_n(line.begin(), cols, field.data() + dst_row * cols);
+            ++dst_row;
+        }
+        return field;
+    }
 
 }
