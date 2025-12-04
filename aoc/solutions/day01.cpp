@@ -4,10 +4,17 @@
  * AoC Day 01 solution.
  */
 
-#include "prep.cpp"
+#include "aoc.h"
 
-constexpr array examples =  {
-    R"(
+/*
+ * Anonymous namespace (or 'unnamed namespace').
+ * Contents are only visible within this .cpp file (similar to 'static').
+ * Works also for types and functions.
+ */
+
+namespace {
+    constexpr array examples =  {
+        R"(
 L68
 L30
 R48
@@ -19,16 +26,11 @@ L99
 R14
 L82
 )",
-    R"(
-)"
-};
 
-/*
- * Anonymous namespace (or 'unnamed namespace').
- * Contents are only visible within this .cpp file (similar to 'static').
- * Works also for types and functions.
- */
-namespace {
+        R"(
+)"
+    };
+
     constexpr int ringSize = 100;
     constexpr int startPos = 50;
 }
@@ -49,7 +51,7 @@ struct DirectionSteps {
     }
 };
 
-void solve(const lines_t &lines) {
+solutions solve(const Lines &lines) {
     auto dirSteps = lines
         | std::views::transform([](const auto &s){ return DirectionSteps::of(s); });
 
@@ -72,26 +74,23 @@ void solve(const lines_t &lines) {
         cross0 += rounds;
     }
 
-    println("-> part 1: {} (at 0)", at0);
-    println("-> part 2: {} (at or cross 0)", at0 + cross0);
+    return {at0, at0 + cross0};
 }
 
 int main() {
-    println("\n--- {} ---", __FILE__);
+    println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 1;
     constexpr auto example = 0;
 
-    const auto blocks = (example > 0) ? exampleInput(examples[example - 1]) : puzzleInput(day);
-    const auto &lines = blocks[0];
+    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
+    print(day, example, lines.size());
 
-    print("{}", stats(day, example, lines.size()));
+    auto [answer, ms] = measure([&] { return solve(lines); });
+    print(answer, ms);
 
     // 1055 (3), 6386 (6)
-    auto ms = measure([&] {
-        solve(lines);
-    });
-    println("[{:.2f} ms]", ms);
+    if constexpr (example==0) { assert(answer.part1==1055 && answer.part2==6386); }
 
     return EXIT_SUCCESS;
 }

@@ -4,16 +4,18 @@
  * AoC Day 03 solution.
  */
 
-#include "prep.cpp"
+#include "aoc.h"
 
-constexpr array examples =  {
-    R"(
+namespace {
+    constexpr array examples =  {
+        R"(
 987654321111111
 811111111111119
 234234234234278
 818181911112111
 )"
-};
+    };
+}
 
 /*
  * Basically a 'pick the lexicographically largest subsequence of length digits'.
@@ -39,33 +41,31 @@ int64_t calcJoltage(const string_view line, const size_t digits) {
     return result;
 }
 
-void solve(const lines_t &lines) {
+solutions solve(const Lines &lines) {
     int64_t sum1{0};
     int64_t sum2{0};
     for (const auto &line : lines) {
         sum1 += calcJoltage(line, 2);
         sum2 += calcJoltage(line, 12);
     }
-    println("-> part 1: {} (2-Joltage)", sum1);
-    println("-> part 2: {} (12-Joltage)", sum2);
+    return {sum1, sum2};
 }
 
 int main() {
-    println("\n--- {} ---", __FILE__);
+    println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 3;
     constexpr auto example = 0;
 
-    const auto blocks = (example > 0) ? exampleInput(examples[example - 1]) : puzzleInput(day);
-    const auto &lines = blocks[0];
+    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
+    print(day, example, lines.size());
 
-    print("{}", stats(day, example, lines.size()));
+    auto [answer, ms] = measure([&] { return solve(lines); });
+    print(answer, ms);
 
     // 17144 (357), 170371185255900 (3121910778619)
-    auto ms = measure([&] {
-        solve(lines);
-    });
-    println("[{:.2f} ms]", ms);
+    if constexpr (example==0) { assert(answer.part1==17144 && answer.part2==170371185255900); }
+    if constexpr (example==1) { assert(answer.part1==357 && answer.part2==3121910778619); }
 
     return EXIT_SUCCESS;
 }

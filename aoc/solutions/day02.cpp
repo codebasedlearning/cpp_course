@@ -4,15 +4,17 @@
  * AoC Day 02 solution.
  */
 
-#include "prep.cpp"
+#include "aoc.h"
 
-constexpr array examples =  {
-    R"(
+namespace {
+    constexpr array examples =  {
+        R"(
 11-22,95-115,998-1012,1188511880-1188511890,222220-222224,
 1698522-1698528,446443-446449,38593856-38593862,565653-565659,
 824824821-824824827,2121212118-2121212124
 )"
-};
+    };
+}
 
 struct IdPair {
     int64_t id1;    // Maybe it is a little bit over the top-but many AoC-tasks require really long numbers.
@@ -29,7 +31,7 @@ struct IdPair {
     }
 };
 
-vector<IdPair> parseLines(const lines_t &lines) {
+vector<IdPair> parseLines(const Lines &lines) {
     vector<IdPair> result;
 
     for (const auto &line : lines) {
@@ -94,7 +96,7 @@ bool checkInvalidIdPart2(const int64_t x) {
     */
 }
 
-void solve(const lines_t &lines) {
+solutions solve(const Lines &lines) {
     auto idPairs = parseLines(lines);
 
     int64_t sum1 = 0;
@@ -108,26 +110,24 @@ void solve(const lines_t &lines) {
         }
     }
 
-    println("-> part 1: {} (invalid IDs)", sum1);
-    println("-> part 2: {} (invalid IDs)", sum2);
+    return {sum1, sum2};
 }
 
 int main() {
-    println("\n--- {} ---", __FILE__);
+    println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 2;
     constexpr auto example = 0;
 
-    const auto blocks = (example > 0) ? exampleInput(examples[example - 1]) : puzzleInput(day);
-    const auto &lines = blocks[0];
+    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
+    print(day, example, lines.size());
 
-    print("{}", stats(day, example, lines.size()));
+    auto [answer, ms] = measure([&] { return solve(lines); });
+    print(answer, ms);
 
     // 24157613387 (1227775554), 33832678380 (4174379265)
-    auto ms = measure([&] {
-        solve(lines);
-    });
-    println("[{:.2f} ms]", ms);
+    if constexpr (example==0) { assert(answer.part1==24157613387 && answer.part2==33832678380); }
+    if constexpr (example==1) { assert(answer.part1==1227775554 && answer.part2==4174379265); }
 
     return EXIT_SUCCESS;
 }

@@ -4,35 +4,37 @@
  * AoC Day xx solution.
  */
 
-#include "prep.cpp"
+#include "aoc.h"
 
-constexpr array examples =  {
-    R"(
+namespace {
+    constexpr array examples =  {
+        R"(
 123
 )"
-};
+    };
+}
 
-void solve(const lines_t &lines) {
-    println("-> part 1: {}", 0);
-    println("-> part 2: {}", 0);
+solutions solve(const Lines &lines) {
+    return {1,2};
 }
 
 int main() {
-    println("\n--- {} ---", __FILE__);
+    println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 0;
     constexpr auto example = 1;
 
-    const auto blocks = (example > 0) ? exampleInput(examples[example - 1]) : puzzleInput(day);
-    const auto &lines = blocks[0];
+    // const auto blocks = (example > 0) ? toBlocks(examples[example - 1]) : toBlocks(day);
+    // const auto &lines = blocks[0];
 
-    print("{}", stats(day, example, lines.size()));
+    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
+    print(day, example, lines.size());
 
-    // sol-part1 (example-part1), sol-part2 (example-part2)
-    auto ms = measure([&] {
-        solve(lines);
-    });
-    println("[{:.2f} ms]", ms);
+    auto [answer, ms] = measure([&] { return solve(lines); });
+    print(answer, ms);
+
+    // 1 (0), 2 (0)
+    if constexpr (example==0) { assert(answer.part1==1 && answer.part2==2); }
 
     return EXIT_SUCCESS;
 }
