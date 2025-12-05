@@ -102,6 +102,9 @@ public:
 
     // p++
     int3 operator++(int) {
+        // ++(*this);
+        // return *this - 1     // same?
+
         int3 tmp(*this);
         ++(*this);
         return tmp;

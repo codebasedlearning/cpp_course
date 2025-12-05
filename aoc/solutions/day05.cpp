@@ -1,7 +1,7 @@
 // (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
 /*
- * AoC Day xx solution.
+ * AoC Day 05 solution.
  */
 
 #include "aoc.h"

@@ -63,13 +63,13 @@ namespace aoc {
 
     Field<char> toField(const Lines &lines) {
         // guard: check format
-        size_t rows{0};
-        size_t cols{0};
+        index_t rows{0};
+        index_t cols{0};
         for (const auto &line : lines) {
             if (line.empty()) continue;
             ++rows;
             if (cols == 0)
-                cols = line.size();
+                cols = static_cast<index_t>(line.size());
             else if (cols != line.size())
                 throw runtime_error("inconsistent cols");
         }
@@ -78,7 +78,7 @@ namespace aoc {
 
         Field<char> field(rows, cols);
 
-        size_t dst_row = 0;
+        index_t dst_row = 0;
         for (const auto &line : lines) {
             if (line.empty()) continue;
             std::copy_n(line.begin(), cols, field.data() + dst_row * cols);

@@ -12,7 +12,7 @@ add_compile_options(-O3 -Wall -Wextra)
 add_executable(day01 solutions/day01.cpp)
 add_executable(day02 solutions/day02.cpp)
 add_executable(day03 solutions/day03.cpp)
-# add_executable(day04 solutions/day04.cpp)
+add_executable(day04 solutions/day04.cpp)
 add_executable(day05 solutions/day05.cpp)
 
 # template

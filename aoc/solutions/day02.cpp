@@ -21,7 +21,7 @@ struct IdPair {
     int64_t id2;
 
     static IdPair of(const string_view term) {
-        const auto pos = term.find("-");
+        const auto pos = term.find('-');
         if (pos == string_view::npos)
             throw runtime_error(format("format does not match, term='{}'", term));
 
