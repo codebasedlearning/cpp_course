@@ -49,7 +49,7 @@ namespace aoc {
         int64_t part2;
     };
 
-    void print(int day, int example, size_t size);
+    void print(int day, int example, size_t size1, size_t size2=0);
     void print(const solutions &answer, double ms);
 
     template <typename F>
@@ -100,8 +100,8 @@ namespace aoc {
     // 2D-stuff-still under construction
 
     struct RC {
-        size_t row;
-        size_t col;
+        int row;
+        int col;
     };
 
     template <typename T>
@@ -114,6 +114,8 @@ namespace aoc {
 
         [[nodiscard]] size_t rows() const noexcept { return rows_; }
         [[nodiscard]] size_t cols() const noexcept { return cols_; }
+
+        [[nodiscard]] bool isValid(const RC rc) const { return rc.row >= 0 && rc.row < rows() && rc.col >= 0 && rc.col < cols(); }
 
         value_type& operator[](const size_t row, const size_t col) noexcept { return data_[linear_index(row, col)]; }
         const value_type& operator[](const size_t row, const size_t col) const noexcept { return data_[linear_index(row, col)]; }

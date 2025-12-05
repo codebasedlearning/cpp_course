@@ -3,8 +3,9 @@
 #include "aoc.h"
 
 namespace aoc {
-    void print(int day, int example, size_t size) {
-        auto info = format("day {} | example {} | size {}", day, example, size);
+    void print(int day, int example, size_t size1, size_t size2) {
+        auto sizes = (size2==0) ? format("size {}", size1) : format("sizes {} / {}", size1, size2);
+        auto info = format("day {} | example {} | {}", day, example, sizes);
         println("{}",format("{}\n{}", info, string(info.size(), '=')));
     }
 
