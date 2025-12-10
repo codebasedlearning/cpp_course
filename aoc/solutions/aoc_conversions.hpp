@@ -17,6 +17,11 @@ namespace aoc {
         return value;
     }
 
+    // template <class T>
+    // T to_number(const std::string& s) {
+    //     return to_number<T>(std::string_view{s});
+    // }
+
     template<typename T>
     string to_string(const T x) {
         return format("{}", x);
