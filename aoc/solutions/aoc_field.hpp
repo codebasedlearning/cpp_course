@@ -1,102 +1,13 @@
-// (C) 2025 A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
+// (C) A.Voß, a.voss@fh-aachen.de, info@codebasedlearning.dev
 
-#ifndef AOC_COMPLETE
-#define AOC_COMPLETE
+#ifndef AOC_FIELD
+#define AOC_FIELD
 
-#include <string>
-#include <string_view>
-#include <charconv>
-#include <format>
-#include <iostream>
-#include <iomanip>
-#include <print>
-#include <sstream>
-#include <fstream>
-#include <algorithm>
-#include <ranges>
-#include <memory>
-#include <vector>
-#include <array>
-#include <iterator>
-#include <cstddef>
-#include <unordered_map>
-#include <unordered_set>
-#include <regex>
-#include <stdexcept>
-#include <chrono>
-#include <type_traits>
-#include <utility>
-#include <variant>
-#include <functional>
-#include <cstdlib>
-#include <utility>
-#include <cassert>
-
-
-using std::string, std::string_view, std::format, std::from_chars;
-using std::cout, std::endl, std::setw, std::stringstream;
-using std::print, std::println;
-using std::vector, std::array, std::unordered_map, std::unordered_set;
-using std::unique_ptr, std::make_unique;
-using std::runtime_error;
-using std::size_t;
+#include "aoc_uses.hpp"
+#include "aoc_conversions.hpp"
+#include "aoc_input.hpp"
 
 namespace aoc {
-
-    // solution management
-
-    struct solutions {
-        int64_t part1;
-        int64_t part2;
-    };
-
-    void print(int day, int example, size_t size1, size_t size2=0);
-    void print(const solutions &answer, double ms);
-
-    template <typename F>
-    auto measure(F&& f) {
-        using R = std::invoke_result_t<F&>;     // actual return type of f()
-
-        auto start = std::chrono::high_resolution_clock::now();
-        if constexpr (std::is_void_v<R>) {
-            std::forward<F>(f)();               // call for void
-            auto end = std::chrono::high_resolution_clock::now();
-            double ms = std::chrono::duration<double, std::milli>(end - start).count();
-            return std::pair {std::monostate{}, ms};
-        } else {
-            R result = std::forward<F>(f)();    // call with result
-            auto end = std::chrono::high_resolution_clock::now();
-            double ms = std::chrono::duration<double, std::milli>(end - start).count();
-            return std::pair<R, double>{std::move(result), ms};
-        }
-    }
-
-    // input management
-
-    using Lines = vector<string>;
-    using Blocks = vector<Lines>;
-
-    Blocks toBlocks(int day);
-    Blocks toBlocks(const string &example);
-    Lines toLines(int day);
-    Lines toLines(const string &example);
-
-    // string or conversion helper
-
-    string strip(string_view s);
-
-    template<typename T>
-    T toNumber(const string_view sv) {
-        T value{};
-        if (auto [p, ec] = from_chars(sv.data(), sv.data() + sv.size(), value); ec != std::errc() || p != sv.end())
-            throw runtime_error(format("Invalid number: {}", sv));
-        return value;
-    }
-
-    template<typename T>
-    string toString(const T x) {
-        return format("{}", x);
-    }
 
     // 2D-stuff-still under construction
 
@@ -124,6 +35,8 @@ namespace aoc {
         [[nodiscard]] index_t rows() const noexcept { return rows_; }
         [[nodiscard]] index_t cols() const noexcept { return cols_; }
 
+        void resize(const index_t rows, const index_t cols) { rows_=rows; cols_=cols; data_.resize(rows_ * cols_); }
+
         [[nodiscard]] bool isValid(const RC rc) const { return rc.row >= 0 && rc.row < rows() && rc.col >= 0 && rc.col < cols(); }
 
         value_type& operator[](const index_t row, const index_t col) noexcept { return data_[linear_index(row, col)]; }
@@ -135,26 +48,32 @@ namespace aoc {
         value_type* data() noexcept { return data_.data(); }
         [[nodiscard]] const value_type* data() const noexcept { return data_.data(); }
 
+        // void transpose() {
+        //     Field<T> tmp(cols_, rows_);
+        //     for (index_t row = 0; row < rows_; ++row)
+        //         for (index_t col = 0; col < cols_; ++col)
+        //             tmp[col,row] = (*this)[row,col];
+        //     //*this = tmp;
+        //     std::swap(rows_, cols_);
+        //     std::swap(data_,tmp.data_);
+        // }
+
     private:
         [[nodiscard]] index_t linear_index(const index_t row, const index_t col) const noexcept { return col + row * cols_; }
 
         index_t rows_;
         index_t cols_;
-        vector<T> data_;
+        std::vector<T> data_;
     };
 
     template <typename T>
-    void print(const Field<T> &field) {
+    void print(const Field<T> &field, const string &delim = "") {
         for (index_t row = 0; row < field.rows(); ++row) {
             for (index_t col = 0; col < field.cols(); ++col)
-                cout << field[row,col];
-            cout << '\n';
+                std::cout << field[row,col] << delim;
+            std::cout << '\n';
         }
     }
-
-    Field<char> toField(const Lines &lines);
-
-    // 2D-stuff for algorithms
 
     template <typename T>
     class Positions {
@@ -262,7 +181,7 @@ namespace aoc {
 
     // 4-point von Neumann neighborhood (N, S, W, E)
     struct VonNeumannNeighborhood {
-        static constexpr array offsets {
+        static constexpr std::array offsets {
                        RC{-1, 0},
             RC{ 0, 1},            RC{ 0,-1},
                        RC{ 1, 0},
@@ -271,7 +190,7 @@ namespace aoc {
 
     // 4-point diagonals only (NW, NE, SW, SE)
     struct DiagonalsNeighborhood {
-        static constexpr array offsets {
+        static constexpr std::array offsets {
             RC{-1,-1},            RC{-1, 1},
             RC{ 1,-1},            RC{ 1, 1}
         };
@@ -279,7 +198,7 @@ namespace aoc {
 
     // 8-point Moore neighborhood
     struct MooreNeighborhood {
-        static constexpr array offsets {
+        static constexpr std::array offsets {
             RC{-1,-1}, RC{-1, 0}, RC{-1, 1},
             RC{ 0,-1},            RC{ 0, 1},
             RC{ 1,-1}, RC{ 1, 0}, RC{ 1, 1}
@@ -301,6 +220,118 @@ namespace aoc {
         return Halo<T, MooreNeighborhood>(f, center);
     }
 
+    /*
+     * Here the view-specific code starts... still under construction.
+     * Try to figure out, what makes sense.
+     */
+
+    template <typename T>
+    concept NumericButNotChar = (std::integral<T> || std::floating_point<T>) && !std::same_as<T, char>;
+
+    template <NumericButNotChar T, std::ranges::input_range R>
+    Field<T> to_field_numeric_impl(R&& lines) {
+        if (lines.empty())
+            throw std::runtime_error("no rows");
+
+        index_t cols{0};
+        const index_t rows = std::ranges::count_if(lines, [](std::string_view s) { return !s.empty(); });
+
+        Field<T> field(0, 0);
+        index_t dst_row = 0;
+        for (const auto &line : lines) {
+            if (line.empty()) continue;
+
+            auto v = aoc::to_numbers<T>(line);
+            if (dst_row==0) {
+                if (v.empty())
+                    throw std::runtime_error("no cols");
+                cols = static_cast<index_t>(v.size());
+                field.resize(rows, cols);
+            } else if (cols != v.size()) {
+                throw std::runtime_error("different cols");
+            }
+            std::copy_n(v.begin(), cols, field.data() + dst_row * cols);
+            ++dst_row;
+        }
+        return field;
+    }
+
+    template <std::ranges::input_range R>
+    Field<char> to_field_char_impl(R&& lines) {
+        // guard: check format, count rows
+        index_t rows{0};
+        index_t cols{0};
+        for (const auto &line : lines) {
+            ++rows;
+            cols = std::max(cols,static_cast<aoc::index_t>(line.size()));
+        }
+        if (rows==0 || cols==0)
+            throw std::runtime_error("no data");
+
+        Field<char> field(rows, cols);
+
+        index_t dst_row = 0;
+        for (const auto &line : lines) {
+            if (line.empty()) continue;
+            std::copy_n(line.begin(), line.size(), field.data() + dst_row * cols);
+            if (line.size() < cols) {
+                std::fill_n(field.data() + dst_row * cols + line.size(), cols-line.size(), ' ');
+            }
+            ++dst_row;
+        }
+        return field;
+    }
+
+    template <typename T, std::ranges::input_range R>
+    Field<T> toField(R&& lines) {
+        if constexpr (std::same_as<T, char>) {
+            return to_field_char_impl(std::forward<R>(lines));
+        } else if constexpr (NumericButNotChar<T>) {
+            return to_field_numeric_impl<T>(std::forward<R>(lines));
+        } else {
+            static_assert(false,
+                "aoc::toField<T>: no implementation for this T");
+        }
+    }
+
+    template <typename T>
+    concept FieldElement = std::same_as<T, char> || NumericButNotChar<T>;
+
+    template <FieldElement T>
+    struct ToFieldAdaptor {
+        template <std::ranges::input_range R>
+        auto operator()(R&& lines) const -> Field<T> {
+            return toField<T>(std::forward<R>(lines));
+        }
+
+        template <std::ranges::input_range R>
+        friend auto operator|(R&& lines, const ToFieldAdaptor& self) -> Field<T> {
+            return self(std::forward<R>(lines));
+        }
+    };
+
+    template <FieldElement T>
+    inline constexpr ToFieldAdaptor<T> to_field{};
+
+    template <typename T>
+    struct ToStdFieldAdaptor {
+        template <std::ranges::input_range R>
+        auto operator()(R&& r) const {
+            return std::forward<R>(r)
+                | as_line_views
+                | first_block_view
+                | aoc::to_field<T>;
+        }
+
+        template <std::ranges::input_range R>
+        friend auto operator|(R&& r, const ToStdFieldAdaptor& self) {
+            return self(std::forward<R>(r));
+        }
+    };
+
+    inline constexpr ToStdFieldAdaptor<char> to_std_field{};
+    inline constexpr ToStdFieldAdaptor<int64_t> to_int_field{};
+    inline constexpr ToStdFieldAdaptor<double> to_double_field{};
 }
 
 namespace std {
@@ -314,11 +345,4 @@ namespace std {
     };
 }
 
-using aoc::solutions;
-using aoc::print, aoc::measure;
-using aoc::Blocks, aoc::Lines, aoc::toBlocks, aoc::toLines;
-using aoc::toNumber, aoc::toString;
-using aoc::index_t, aoc::RC, aoc::Field;
-using aoc::toField;
-
-#endif // AOC_COMPLETE
+#endif // AOC_FIELD

@@ -4,17 +4,16 @@
  * AoC Day 01 solution.
  */
 
-#include "aoc.h"
+#include "aoc.hpp"
 
 /*
  * Anonymous namespace (or 'unnamed namespace').
  * Contents are only visible within this .cpp file (similar to 'static').
  * Works also for types and functions.
  */
-
 namespace {
-    constexpr array examples =  {
-        R"(
+    constexpr std::array examples =  {
+R"(
 L68
 L30
 R48
@@ -26,9 +25,6 @@ L99
 R14
 L82
 )",
-
-        R"(
-)"
     };
 
     constexpr int ringSize = 100;
@@ -39,29 +35,30 @@ struct DirectionSteps {
     bool isLeft;
     int steps;
 
-    static DirectionSteps of(const string &term) {
+    static DirectionSteps of(const std::string_view &term) {
         // a little bit overengineered, I wanted to have a reg-ex with groups (as template)
         // or use from_chars
         static const std::regex re(R"(^([A-Za-z]+)(\d+)$)");
 
         std::smatch m;
-        if (!std::regex_match(term, m, re) || (m[1].str()!="L" && m[1].str()!="R"))
-            throw runtime_error(format("format does not match, term='{}'", term));
+        auto s = string(term);
+        if (!std::regex_match(s, m, re) || (m[1].str()!="L" && m[1].str()!="R"))
+            throw std::runtime_error(format("format does not match, term='{}'", term));
         return { m[1].str()=="L", std::stoi(m[2].str()) };
     }
 };
 
-solutions solve(const Lines &lines) {
+aoc::solutions solve(std::ranges::input_range auto&& lines) {
     auto dirSteps = lines
         | std::views::transform([](const auto &s){ return DirectionSteps::of(s); });
 
     auto pos = startPos, at0 = 0, cross0 = 0;
 
     for (const auto &[isLeft, steps] : dirSteps) {
-        const auto [rounds, val] = std::div(steps, ringSize);   // -> quot, rem
+        const auto [rounds, val] = std::div(steps, ringSize); // -> quot, rem
 
         if (isLeft) {
-            if (0 < pos && pos < val)         // leaving the edges is intended.
+            if (0 < pos && pos < val) // leaving the edges is intended.
                 ++cross0;
             pos = (pos - val + ringSize) % ringSize;
         } else {
@@ -77,20 +74,23 @@ solutions solve(const Lines &lines) {
     return {at0, at0 + cross0};
 }
 
+
 int main() {
     println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 1;
-    constexpr auto example = 0;
+    constexpr auto example = -1;
+    aoc::println(day, example);
 
-    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
-    print(day, example, lines.size());
+    const auto input = (example >= 0) ? aoc::Input::of(examples[example]) : aoc::Input::of(day);
+    auto lines = input | aoc::as_std_lines;
 
-    auto [answer, ms] = measure([&] { return solve(lines); });
-    print(answer, ms);
+    auto [answer, ms] = aoc::measure([&] { return solve(lines); });
+    aoc::println(answer, ms);
 
     // 1055 (3), 6386 (6)
-    if constexpr (example==0) { assert(answer.part1==1055 && answer.part2==6386); }
+    if constexpr (example==-1) { assert(answer.part1==1055 && answer.part2==6386); }
+    if constexpr (example==0) { assert(answer.part1==3 && answer.part2==6); }
 
     return EXIT_SUCCESS;
 }

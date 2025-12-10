@@ -4,36 +4,38 @@
  * AoC Day xx solution.
  */
 
-#include "aoc.h"
+#include "aoc.hpp"
 
 namespace {
-    constexpr array examples =  {
-        R"(
-123
-)"
+    constexpr std::array examples =  {
+R"(
+L68
+)",
     };
 }
 
-solutions solve(const Lines &lines) {
+aoc::solutions solve(std::ranges::input_range auto&& lines) {
+
+    aoc::print(lines | aoc::to_field<char>);
     return {1,2};
 }
+
 
 int main() {
     println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 0;
-    constexpr auto example = 1;
+    constexpr auto example = 0;
+    aoc::println(day, example);
 
-    // const auto blocks = (example > 0) ? toBlocks(examples[example - 1]) : toBlocks(day);
-    // const auto &lines = blocks[0];
+    const auto input = (example >= 0) ? aoc::Input::of(examples[example]) : aoc::Input::of(day);
+    auto lines = input | aoc::as_std_lines;
 
-    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
-    print(day, example, lines.size());
+    auto [answer, ms] = aoc::measure([&] { return solve(lines); });
+    aoc::println(answer, ms);
 
-    auto [answer, ms] = measure([&] { return solve(lines); });
-    print(answer, ms);
-
-    // 1 (0), 2 (0)
+    // 1 (1), 2 (2)
+    if constexpr (example==-1) { assert(answer.part1==1 && answer.part2==2); }
     if constexpr (example==0) { assert(answer.part1==1 && answer.part2==2); }
 
     return EXIT_SUCCESS;

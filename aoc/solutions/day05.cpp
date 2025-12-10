@@ -4,10 +4,10 @@
  * AoC Day 05 solution.
  */
 
-#include "aoc.h"
+#include "aoc.hpp"
 
 namespace {
-    constexpr array examples =  {
+    constexpr std::array examples =  {
         R"(
 3-5
 10-14
@@ -35,16 +35,16 @@ struct Range {
 
         std::smatch match;
         if (!std::regex_match(line, match, re)) {
-            throw runtime_error("bad format");
+            throw std::runtime_error("bad format");
         }
 
-        const auto from = toNumber<int64_t>(match[1].str());
-        const auto to   = toNumber<int64_t>(match[2].str());
+        const auto from = aoc::to_number<int64_t>(match[1].str());
+        const auto to   = aoc::to_number<int64_t>(match[2].str());
         return {from, to};
     }
 };
 
-vector<Range> normalizeRanges(vector<Range> &ranges) {
+std::vector<Range> normalizeRanges(std::vector<Range> &ranges) {
     if (ranges.empty())
         return {};
 
@@ -55,7 +55,7 @@ vector<Range> normalizeRanges(vector<Range> &ranges) {
                           return a.to < b.to;
                       });
 
-    vector<Range> result;
+    std::vector<Range> result;
     Range current = ranges[0];
 
     for (size_t i = 1; i < ranges.size(); ++i) {
@@ -71,17 +71,17 @@ vector<Range> normalizeRanges(vector<Range> &ranges) {
     return result;
 }
 
-solutions solve(const Lines &rangeLines, const Lines &idLines) {
-    vector<Range> ranges;
+aoc::solutions solve(const aoc::Lines &rangeLines, const aoc::Lines &idLines) {
+    std::vector<Range> ranges;
     ranges.reserve(rangeLines.size());
     for (auto &line : rangeLines) {
         ranges.push_back(Range::of(line));
     }
 
-    vector<int64_t> ids;
+    std::vector<int64_t> ids;
     ids.reserve(idLines.size());
     for (auto &line : idLines) {
-        ids.push_back(toNumber<int64_t>(line));
+        ids.push_back(aoc::to_number<int64_t>(line));
     }
 
     int sum1 = 0;
@@ -112,19 +112,21 @@ int main() {
     println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 5;
-    constexpr auto example = 0;
+    constexpr auto example = -1;
+    aoc::println(day, example);
 
-    const auto blocks = (example > 0) ? toBlocks(examples[example - 1]) : toBlocks(day);
-    const auto &rangeLines = blocks[0];
-    const auto &idLines = blocks[1];
+    const auto input = (example >= 0) ? aoc::Input::of(examples[example]) : aoc::Input::of(day);
+    auto blocks = input | aoc::as_block_views;
 
-    print(day, example, rangeLines.size(), idLines.size());
+    auto it  = blocks.begin();
+    auto rangeLines = (*it) | aoc::to_trimmed_lines;
+    auto idLines = (*(++it)) | aoc::to_trimmed_lines;
 
-    auto [answer, ms] = measure([&] { return solve(rangeLines,idLines); });
-    print(answer, ms);
+    auto [answer, ms] = aoc::measure([&] { return solve(rangeLines,idLines); });
+    aoc::println(answer, ms);
 
     // 529 (3), 344260049617193 (14)
-    if constexpr (example==0) { assert(answer.part1==529 && answer.part2==344260049617193); }
+    if constexpr (example==-1) { assert(answer.part1==529 && answer.part2==344260049617193); }
 
     return EXIT_SUCCESS;
 }

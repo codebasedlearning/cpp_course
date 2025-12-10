@@ -4,11 +4,11 @@
  * AoC Day 02 solution.
  */
 
-#include "aoc.h"
+#include "aoc.hpp"
 
 namespace {
-    constexpr array examples =  {
-        R"(
+    constexpr std::array examples =  {
+R"(
 11-22,95-115,998-1012,1188511880-1188511890,222220-222224,
 1698522-1698528,446443-446449,38593856-38593862,565653-565659,
 824824821-824824827,2121212118-2121212124
@@ -23,16 +23,16 @@ struct IdPair {
     static IdPair of(const string_view term) {
         const auto pos = term.find('-');
         if (pos == string_view::npos)
-            throw runtime_error(format("format does not match, term='{}'", term));
+            throw std::runtime_error(format("format does not match, term='{}'", term));
 
-        const auto id1 = toNumber<int64_t>(term.substr(0, pos));
-        const auto id2 = toNumber<int64_t>(term.substr(pos + 1));
+        const auto id1 = aoc::to_number<int64_t>(term.substr(0, pos));
+        const auto id2 = aoc::to_number<int64_t>(term.substr(pos + 1));
         return {id1, id2};
     }
 };
 
-vector<IdPair> parseLines(const Lines &lines) {
-    vector<IdPair> result;
+std::vector<IdPair> parseLines(std::ranges::input_range auto&& lines) {
+    std::vector<IdPair> result;
 
     for (const auto &line : lines) {
         for (auto chunk : std::views::split(line, ',')) {
@@ -43,9 +43,9 @@ vector<IdPair> parseLines(const Lines &lines) {
     return result;
 }
 
-using DivList = unordered_set<size_t>;
+using DivList = std::unordered_set<size_t>;
 const DivList& quotients(size_t n) {
-    static unordered_map<size_t, DivList> cache{ {1,DivList()} };
+    static std::unordered_map<size_t, DivList> cache{ {1,DivList()} };
 
     if (n <= 1) n=1;
     if (const auto it = cache.find(n); it != cache.end())
@@ -65,17 +65,18 @@ const DivList& quotients(size_t n) {
 }
 
 bool checkInvalidIdPart1(const int64_t x) {
-    const auto s = toString(x);
+    const auto s = aoc::to_string(x);
     const size_t n = s.size();
     if (n % 2 != 0)
         return false;   // odd length cannot match
 
     const size_t h = n / 2;
-    return string_view{s}.substr(0, h) == string_view{s}.substr(h, h);
+    const auto sv = string_view{s};
+    return sv.substr(0, h) == sv.substr(h, h);
 }
 
 bool checkInvalidIdPart2(const int64_t x) {
-    const auto s = toString(x);
+    const auto s = aoc::to_string(x);
     const size_t n = s.size();
 
     return std::ranges::any_of(quotients(n), [&](size_t q) {
@@ -96,7 +97,7 @@ bool checkInvalidIdPart2(const int64_t x) {
     */
 }
 
-solutions solve(const Lines &lines) {
+aoc::solutions solve(std::ranges::input_range auto&& lines) {
     auto idPairs = parseLines(lines);
 
     int64_t sum1 = 0;
@@ -117,17 +118,18 @@ int main() {
     println("\n--- {} ---\n", __FILE__);
 
     constexpr auto day = 2;
-    constexpr auto example = 0;
+    constexpr auto example = -1;
+    aoc::println(day, example);
 
-    const auto lines = (example > 0) ? toLines(examples[example - 1]) : toLines(day);
-    print(day, example, lines.size());
+    const auto input = (example >= 0) ? aoc::Input::of(examples[example]) : aoc::Input::of(day);
+    auto lines = input | aoc::as_std_lines;
 
-    auto [answer, ms] = measure([&] { return solve(lines); });
-    print(answer, ms);
+    auto [answer, ms] = aoc::measure([&] { return solve(lines); });
+    aoc::println(answer, ms);
 
     // 24157613387 (1227775554), 33832678380 (4174379265)
-    if constexpr (example==0) { assert(answer.part1==24157613387 && answer.part2==33832678380); }
-    if constexpr (example==1) { assert(answer.part1==1227775554 && answer.part2==4174379265); }
+    if constexpr (example==-1) { assert(answer.part1==24157613387 && answer.part2==33832678380); }
+    if constexpr (example==0) { assert(answer.part1==1227775554 && answer.part2==4174379265); }
 
     return EXIT_SUCCESS;
 }
