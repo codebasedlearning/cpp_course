@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 23)              # Requests C++23 mode for targets
 set(CMAKE_CXX_STANDARD_REQUIRED ON)     # Fails configuration if the compiler can’t provide the requested standard
 set(CMAKE_CXX_EXTENSIONS OFF)           # Improves portability
 
-add_subdirectory(0x00)
+add_subdirectory(0x00)                  # Creates a new scope
 add_subdirectory(0x01)
 add_subdirectory(0x02)
 add_subdirectory(0x03)
@@ -16,4 +16,5 @@ add_subdirectory(0x0x_am1)
 add_subdirectory(0x05)
 add_subdirectory(0x06)
 add_subdirectory(0x07)
+add_subdirectory(0x08)
 add_subdirectory(aoc)
