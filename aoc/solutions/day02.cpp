@@ -140,7 +140,7 @@ int main() {
     aoc::println(answer, ms);
 
     // 24157613387 (1227775554), 33832678380 (4174379265)
-    if constexpr (example==-1) { assert(answer.part1==24157613387 && answer.part2==33832678380); } // best 64 113ms
+    if constexpr (example==-1) { assert(answer.part1==24157613387 && answer.part2==33832678380); } // best 64ms
     if constexpr (example==0) { assert(answer.part1==1227775554 && answer.part2==4174379265); }
 
     return EXIT_SUCCESS;

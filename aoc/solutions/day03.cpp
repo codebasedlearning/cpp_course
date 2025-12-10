@@ -24,7 +24,7 @@ R"(
  * e.g. '-O3' (see CMakeList) string& and string_view have similar execution speed.
  */
 
-int64_t calcJoltage(const string_view line, const size_t digits) {
+constexpr int64_t calcJoltage(const string_view line, const size_t digits) {
     size_t pos{0};          // just for readability, one can solve this with first and it only
     int64_t result{0};      // instead of collecting chars
     for (size_t j=1; j<=digits; ++j) {
@@ -65,7 +65,7 @@ int main() {
     aoc::println(answer, ms);
 
     // 17144 (357), 170371185255900 (3121910778619)
-    if constexpr (example==-1) { assert(answer.part1==17144 && answer.part2==170371185255900); }
+    if constexpr (example==-1) { assert(answer.part1==17144 && answer.part2==170371185255900); } // 63ms
     if constexpr (example==0) { assert(answer.part1==357 && answer.part2==3121910778619); }
 
     return EXIT_SUCCESS;
