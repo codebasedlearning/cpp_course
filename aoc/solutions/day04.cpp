@@ -35,13 +35,14 @@ aoc::solutions solve(std::ranges::input_range auto&& lines) {
         | std::views::filter([&](const aoc::RC rc) { return field[rc] == '@'; })
     );
 
+    auto neighbor_count = [&](const aoc::RC rc) {
+        return std::ranges::count_if( halo(field, rc),
+            [&](const aoc::RC cell) { return field[cell] == '@'; }
+        );
+    };
+
     // abort if too long
     for (size_t loop=0; loop<1000; ++loop) {
-        auto neighbor_count = [&](const aoc::RC rc) {
-            return std::ranges::count_if( halo(field, rc),
-                [&](const aoc::RC cell) { return field[cell] == '@'; }
-            );
-        };
 
         // reduce papers
         auto toLift = std::ranges::to<std::unordered_set<aoc::RC>>(
@@ -55,7 +56,7 @@ aoc::solutions solve(std::ranges::input_range auto&& lines) {
         if (toLift.empty())
             break;
 
-        for (const auto &rc : toLift) {
+        for (const auto rc : toLift) {
             papers.erase(rc);
             field[rc] = '.';
         }
@@ -72,13 +73,13 @@ int main() {
 
     const auto input = (example >= 0) ? aoc::Input::of(examples[example]) : aoc::Input::of(day);
     auto lines = input | aoc::as_std_lines;
-//    auto field = input | aoc::as_std_lines | toField;
 
     auto [answer, ms] = aoc::measure([&] { return solve(lines); });
     aoc::println(answer, ms);
 
     // 1578 (13), 10132 (43)
-    if constexpr (example==-1) { assert(answer.part1==1578 && answer.part2==10132); }
+    if constexpr (example==-1) { assert(answer.part1==1578 && answer.part2==10132); } // 2.81ms
+    if constexpr (example==0) { assert(answer.part1==13 && answer.part2==43); }
 
     return EXIT_SUCCESS;
 }

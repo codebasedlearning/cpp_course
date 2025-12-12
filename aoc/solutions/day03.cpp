@@ -65,7 +65,7 @@ int main() {
     aoc::println(answer, ms);
 
     // 17144 (357), 170371185255900 (3121910778619)
-    if constexpr (example==-1) { assert(answer.part1==17144 && answer.part2==170371185255900); } // 63ms
+    if constexpr (example==-1) { assert(answer.part1==17144 && answer.part2==170371185255900); } // 0.05ms
     if constexpr (example==0) { assert(answer.part1==357 && answer.part2==3121910778619); }
 
     return EXIT_SUCCESS;
