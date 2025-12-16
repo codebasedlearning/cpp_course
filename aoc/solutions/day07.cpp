@@ -26,7 +26,7 @@ R"(
 .^.^.^.^.^...^.
 ...............
 )"
-        };
+    };
 }
 
 aoc::solutions solve(std::ranges::input_range auto&& lines) {
