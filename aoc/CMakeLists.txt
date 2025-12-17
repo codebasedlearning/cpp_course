@@ -17,6 +17,7 @@ add_executable(day05 solutions/day05.cpp)
 add_executable(day06 solutions/day06.cpp)
 add_executable(day07 solutions/day07.cpp)
 add_executable(day08 solutions/day08.cpp)
+add_executable(day09 solutions/day09.cpp)
 
 add_executable(aoc_test solutions/aoc_test.cpp)
 
