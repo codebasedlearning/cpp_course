@@ -1,0 +1,65 @@
+{
+  "Ergebnis": {
+    "A1.a": {
+      "Punkte": 1,
+      "Kommentar": "Gegeben: Default-Konstruktor `config(){}` vorhanden (1P). Abgezogen: Attribut heißt `file_name` statt gefordert `file_name_` (Name nicht korrekt, 0/1P), Typ `string` wäre korrekt, aber Namensanforderung verfehlt."
+    },
+    "A1.b": {
+      "Punkte": 4,
+      "Kommentar": "Gegeben: Setter-Methode `file_name(...)` vorhanden (1P). Getter `file_name()` vorhanden (1P). Ausgabeoperator vorhanden und als `friend` in der Klasse deklariert (friend: 1P). Parameter des Ausgabeoperators als `const config&` (1P). Abgezogen: Setter-Parameter nicht als `const string&` sondern by-value `const string s` (0/1P). Setter gibt `config` statt `config&` zurück (0/1P). Fehlendes `const` in der Signatur (Getter nicht `const`) (0/1P). Ausgabeoperator hat keine Funktionalität (gibt nichts aus, nur `return os;`) (0/1P)."
+    },
+    "A2.a": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: `vector_t` ist als `vector<long>` typedefiniert, gefordert ist Vektor von `int` (0/2P)."
+    },
+    "A2.b": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: Basisklasse `IPO` mit rein virtuellen Methoden `input()` und `process()` angelegt (Ansatz teilweise, 1/2P). Rückgabetyp `IPO&` genutzt (1P). Abgezogen: `output()` als rein virtuelle Funktion fehlt (Teilanforderung nicht erfüllt, daher nur Teilpunkte). Virtueller Destruktor fehlt (0/1P)."
+    },
+    "A2.c": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: `IHK` erbt `protected` von `IPO` (`class IHK : protected IPO`), gefordert ist öffentliche Ableitung (0/1P)."
+    },
+    "A2.d": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: Konstruktor nimmt `const config&` entgegen (1P) und kopiert per Member-Initializer-List `: cfg_(config)` (1P)."
+    },
+    "A2.e": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: `protected`-Bereich wird verwendet (1P). `input_data_` existiert und ist vom Typ `vector_t` (1P). Abgezogen: `output_data_` als `vector_t`-Attribut fehlt komplett (0/1P)."
+    },
+    "A2.f": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: Stringstream nutzt falsche Daten (`\"11 3 10 2 22\"` statt `\"1,3,10,2,2\"`) und das Parsing ist nicht passend für kommaseparierte Werte; zudem wird `string_view` verwendet ohne korrekte Einleselogik für die Aufgabe. Geforderte Überführung nach `input_data_` wird nicht korrekt erreicht (0/4P)."
+    },
+    "A2.g": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: Statt Quadrieren wird mit `x*2` verdoppelt. Außerdem ist `output_data_` nicht definiert, daher keine korrekte Befüllung möglich (0/2P)."
+    },
+    "A2.h": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: `output()` ist nicht implementiert; geforderte Ausgabeform `[y0,y1,…]` wird nicht erzeugt (0/2P)."
+    },
+    "A3.a": {
+      "Punkte": 1,
+      "Kommentar": "Gegeben: Klasse `clever_ptr` ist angelegt (1P). Abgezogen: Raw-Pointer ist nicht korrekt als `int* p_` umgesetzt (stattdessen ungültig `int-ptr *p;`) und auch nicht mit `nullptr` initialisiert (0/2P)."
+    },
+    "A3.b": {
+      "Punkte": 1,
+      "Kommentar": "Gegeben: Konstruktor nutzt eine Member-Initializer-List (1P). Abgezogen: Kein `new` zur Heap-Allokation genutzt und Initialisierung ist falsch (`p(int(n))`). Destruktor nutzt zudem `delete[]` statt `delete` und passt nicht zur geforderten Allokation (0/2P)."
+    },
+    "A3.c": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: Copy-Konstruktor ist nicht gelöscht, sondern explizit auf `= default` gesetzt (0/1P)."
+    },
+    "A3.d": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: Geforderte korrekte Rückgabe über gültigen `int`-Pointer ist nicht erfüllt, da der Pointer bereits in A3.a typ-/namensmäßig falsch ist; damit ist `return *p;` nicht als korrekte Umsetzung wertbar (0/2P)."
+    },
+    "A3.e": {
+      "Punkte": 0,
+      "Kommentar": "Abgezogen: Dereferenzierungsoperator `operator*` ist nicht implementiert (0/1P)."
+    }
+  },
+  "Gesamtpunkte": 13
+}

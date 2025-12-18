@@ -1,0 +1,65 @@
+{
+  "Ergebnis": {
+    "A1.a": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: Privates Attribut file_name_ vom Typ string vorhanden (1P) und Default-Konstruktor config() = default; implementiert (1P). Abzug: keiner."
+    },
+    "A1.b": {
+      "Punkte": 8,
+      "Kommentar": "Gegeben: Setter file_name(const string&) vorhanden (1P), nutzt const string& (1P), gibt config& zurück (1P). Getter file_name() const vorhanden (1P) und ist const (1P). Ausgabeoperator funktioniert und gibt Dateiname aus (1P), nimmt const config& (1P) und ist als friend in der Klasse deklariert (1P). Abzug: keiner."
+    },
+    "A2.a": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: using vector_t = vector<int>; korrekt als Typdefinition umgesetzt (2P). Abzug: keiner."
+    },
+    "A2.b": {
+      "Punkte": 4,
+      "Kommentar": "Gegeben: Basisklasse IPO mit drei rein virtuellen Funktionen input/process/output (2P), Rückgabetyp jeweils IPO& (1P), virtueller Destruktor vorhanden (1P). Abzug: keiner."
+    },
+    "A2.c": {
+      "Punkte": 1,
+      "Kommentar": "Gegeben: class IHK: public IPO (öffentliche Ableitung) korrekt (1P). Abzug: keiner."
+    },
+    "A2.d": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: Konstruktor IHK(const config&) vorhanden (1P) und kopiert per Member-Initializer-List: cfg_(config) (1P). Abzug: keiner."
+    },
+    "A2.e": {
+      "Punkte": 3,
+      "Kommentar": "Gegeben: protected: verwendet (1P), input_data_ vom Typ vector_t (1P) und output_data_ vom Typ vector_t (1P). Abzug: keiner."
+    },
+    "A2.f": {
+      "Punkte": 4,
+      "Kommentar": "Gegeben: Zahlen werden via stringstream gelesen und per stoi in input_data_ übertragen (Push in Schleife) (4P). Abzug: keiner (Delimiter ist zwar nicht wie im Tipp mit Komma-String, aber die geforderte Überführung der Zahlen ist funktional korrekt)."
+    },
+    "A2.g": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: Quadrieren jedes Werts aus input_data_ und Befüllen von output_data_ via x*x (2P). Abzug: keiner."
+    },
+    "A2.h": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: Ausgabeformat exakt in Klammern mit Komma-separierten Werten ohne Leerzeichen, z.B. [1, 9, 100, 4, 4] (2P). Abzug: keiner."
+    },
+    "A3.a": {
+      "Punkte": 3,
+      "Kommentar": "Gegeben: Klasse clever_ptr angelegt (1P). Raw-Pointer auf int angelegt und mit nullptr initialisiert (int *p{nullptr};) (2P). Abzug: keiner."
+    },
+    "A3.b": {
+      "Punkte": 3,
+      "Kommentar": "Gegeben: Member-Initializer-List genutzt (: p(new int(n))) (1P), new verwendet und mit übergebenem Wert initialisiert (1P), Destruktor gibt Speicher frei (delete p;) (1P). Abzug: keiner."
+    },
+    "A3.c": {
+      "Punkte": 1,
+      "Kommentar": "Gegeben: Copy-Konstruktor gelöscht (clever_ptr(const clever_ptr&) = delete;) (1P). Abzug: keiner."
+    },
+    "A3.d": {
+      "Punkte": 2,
+      "Kommentar": "Gegeben: get() gibt per Referenz auf *p zurück, Rückgabetyp int& (2P). Abzug: keiner."
+    },
+    "A3.e": {
+      "Punkte": 1,
+      "Kommentar": "Gegeben: Dereferenzierungsoperator operator*() liefert äquivalent zu get() (hier direkt return get();) (1P). Abzug: keiner."
+    }
+  },
+  "Gesamtpunkte": 40
+}

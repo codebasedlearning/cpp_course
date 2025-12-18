@@ -44,7 +44,7 @@ Benötigt wird
 
 a) [2P] ein Datentyp `vector_t` als Vektor von `int`.
 
-b) [3P] und eine Basisklasse `IPO` (=EVA) mit drei *rein virtuellen Funktionen* 
+b) [4P] und eine Basisklasse `IPO` (=EVA) mit drei *rein virtuellen Funktionen* 
 `input`, `process` und `output`.
 Die Funktionen haben keine Parameter und der Rückgabetyp ist jeweils eine 
 Referenz auf sich selbst, also vom Typ `IPO`. Beachten Sie auch die 'Best Practices' 
@@ -54,7 +54,7 @@ Von dieser Basisklasse wird die Klasse `IHK` abgeleitet, genauer:
 
 c) [1P] `IHK` erbt öffentlich von `IPO`.
 
-d) [3P] Der Konstruktor wird mit einem `config`-Objekt (aus A1) aufgerufen und 
+d) [2P] Der Konstruktor wird mit einem `config`-Objekt (aus A1) aufgerufen und 
 kopiert dieses in ein privates Attribut `cfg_` gleichen Typs.
 <br>**Tipp:** Falls Ihre Klasse `config` aus *A1* nicht existiert oder fehlerhaft ist, 
 nutzen Sie einen `string`.

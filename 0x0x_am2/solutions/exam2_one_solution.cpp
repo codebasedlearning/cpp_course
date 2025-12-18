@@ -60,8 +60,8 @@ public:
 // alternativ 'typedef vector<int> vector_t;' ist auch in Ordnung und gibt keinen Abzug
 using vector_t = vector<int>;
 
-// A2.b) 3P:
-// - Basisklasse mit rein virtuellen Funktionen input,process,output 1P
+// A2.b) 4P:
+// - Basisklasse mit rein virtuellen Funktionen input,process,output 2P
 // - IPO& als Rückgabe 1P
 // - virtueller Destruktor 1P
 // alternativ 'struct' statt 'class' ist auch in Ordnung und gibt keinen Abzug (Interface-Idee)
@@ -133,11 +133,11 @@ public:
 
 // A3
 
-// A3.a) 1P
+// A3.a) 1P:
 // - Klasse clever_ptr angelegt 1P
 class clever_ptr {
 
-    // A3.a) 2P
+    // A3.a) 2P:
     // - raw ptr p mit korrektem Typ angelegt und initialisiert 2P
     int *p{nullptr};
 
@@ -152,11 +152,11 @@ public:
     // - Destruktor gibt Speicher frei 1P
     ~clever_ptr() { delete p; }
 
-    // A3.c) 1P
+    // A3.c) 1P:
     // - copy-ctor gelöscht 1P
     clever_ptr(const clever_ptr &) = delete;
 
-    // A3.d) 2P
+    // A3.d) 2P:
     // - korrekte Rückgabe mit int& 2P
     // [[nodiscard]] ist nicht verlangt
     [[nodiscard]] int& get() const { return *p; }
