@@ -6,7 +6,7 @@ Note: This is part of a test exam task, which is why it is given in German.
 
 ---
 
-- Zeit 1h, Punkte: 40
+- Zeit 1h 15min, Punkte: 40
 
 ---
 
