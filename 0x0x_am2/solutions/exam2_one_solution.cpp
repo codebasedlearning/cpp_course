@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <sstream>
+#include <string_view>
 
 using std::cout, std::endl, std::ostream;
 using std::string;
@@ -100,19 +101,21 @@ public:
     // A2.f) 4P:
     // - korrektes Überführen der Zahlen in den Vektor input_data_ 4P
     IPO& input() override {
+        input_data_.clear();
         std::stringstream data{string("1 3 10 2 2")};
-        string number;
-        do {
-            data >> number;
-            input_data_.push_back(stoi(number));
-        } while (!data.eof());
+
+        int x;
+        while (data >> x) {
+            input_data_.push_back(x);
+        }
         return *this;
     }
-
     // A2.g) 2P:
     // - quadrieren der Werte zu output_data_ 2P
     IPO & process() override {
-        for (const auto &x : input_data_)
+        output_data_.clear();
+        output_data_.reserve(input_data_.size());
+        for (const auto x : input_data_)
             output_data_.push_back(x*x);
         return *this;
     }
