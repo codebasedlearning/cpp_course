@@ -106,8 +106,8 @@ public:
     //  - [[nodiscard]] optional
     //  - return map[id]; funktioniert wg. const nicht
     [[nodiscard]] vector_type get(index_type id) const {
-        auto it{map.find(id)};
-        return (it!=map.end()) ? (*it).second : vector_type{}; // or it->second
+        const auto it{map.find(id)};
+        return (it!=map.end()) ? it->second : vector_type{}; // or it->second
     }
 
     // k) 2P:

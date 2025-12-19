@@ -158,12 +158,12 @@ public:
     // A3.d) 2P:
     // - korrekte Rückgabe mit int& 2P
     // [[nodiscard]] ist nicht verlangt
-    [[nodiscard]] int& get() const { return *p_; }
+    [[nodiscard]] const int& get() const { return *p_; }
 
     // A3.e) 1P
     // - korrekte Implementierung 1P
     // [[nodiscard]] ist nicht verlangt
-    [[nodiscard]] int& operator*() const { return get(); }
+    [[nodiscard]] const int& operator*() const { return get(); }
 };
 
 int main() {
