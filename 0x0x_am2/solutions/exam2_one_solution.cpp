@@ -82,9 +82,8 @@ class IHK : public IPO {
     config cfg_;
 
 public:
-    // A2.d) 2P:
+    // A2.d) 1P:
     // - ctor mit const& config 1P
-    // - nutzen der Member-Initialiser-List 1P
     // 'explicit' ist nicht verlangt
     explicit IHK(const config & config) : cfg_(config) {}
 
@@ -139,18 +138,18 @@ class clever_ptr {
 
     // A3.a) 2P:
     // - raw ptr p mit korrektem Typ angelegt und initialisiert 2P
-    int *p{nullptr};
+    int *p_{nullptr};
 
 public:
     // A3.b) 2P:
     // - Member-Initializer-List verwendet 1P
     // - new verwendet und initialisiert 1P
     // explicit ist nicht verlangt
-    explicit clever_ptr(const int n): p(new int(n)) {}
+    explicit clever_ptr(const int n): p_(new int(n)) {}
 
     // A3.b) 1P:
     // - Destruktor gibt Speicher frei 1P
-    ~clever_ptr() { delete p; }
+    ~clever_ptr() { delete p_; }
 
     // A3.c) 1P:
     // - copy-ctor gelöscht 1P
@@ -159,7 +158,7 @@ public:
     // A3.d) 2P:
     // - korrekte Rückgabe mit int& 2P
     // [[nodiscard]] ist nicht verlangt
-    [[nodiscard]] int& get() const { return *p; }
+    [[nodiscard]] int& get() const { return *p_; }
 
     // A3.e) 1P
     // - korrekte Implementierung 1P

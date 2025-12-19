@@ -123,8 +123,8 @@ A2.c) 1P:
 - IHK öffentlich abgeleitet 1P
 
 A2.d) 2P:
+- privates Attribut cfg_ vom Typ config 1P
 - ctor mit const& config 1P
-- nutzen der Member-Initialiser-List 1P
 
 A2.e) 3P:
 - protected verwendet 1P

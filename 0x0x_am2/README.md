@@ -66,7 +66,7 @@ f) [4P] Die Funktion `input` lädt eigentlich Zahlenfolgen aus einer Datei (desw
 Um es hier etwas einfacher zu gestalten, nutzen Sie statt eines File-Streams einen 
 fest codierten String-Stream (innerhalb von `input`)
 ```
-    std::stringstream data{string("1,3,10,2,2")};
+    std::stringstream data{string("1 3 10 2 2")};
 ```
 und überführen die Zahlen in den Vektor `input_data_`.
 
