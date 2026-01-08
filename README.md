@@ -31,3 +31,31 @@ Note to enrolled students: The "More" sections are part of the required curricul
 
 Feel free to send constructive feedback and suggestions
 to [me](mailto:info@codebasedlearning.dev).
+
+## Content
+
+### [Unit 0x00: Compile and Run](0x00/README.md)
+
+
+### [Unit 0x01: Basics I](0x01/README.md)
+
+| Snippet                                            | Content                                         |
+|:---------------------------------------------------|:------------------------------------------------|
+| [a_uniform_init](0x01/snippets/a_uniform_init.cpp) | Variable declaration and initialization methods |
+| [b_console_io](0x01/snippets/b_console_io.cpp)     | Console I/O, `cin`, `cout`                      |
+| [c_primitives](0x01/snippets/c_primitives.cpp)     | Primitive data types and operators              |
+| [d_strings](0x01/snippets/d_strings.cpp)           | String handling                                 |
+| [e_if_for_while](0x01/snippets/e_if_for_while.cpp) | Control flow statements                         |
+| [f_functions](0x01/snippets/f_functions.cpp)       | Function declarations and definitions, scopes   |
+
+### [Unit 0x02: Basics II](0x02/README.md)
+
+| Snippet                                                    | Content                  |
+|:-----------------------------------------------------------|:-------------------------|
+| [a_consts](0x02/snippets/a_consts.cpp)                     | `const`-related concepts |
+| [b_structs](0x02/snippets/b_structs.cpp)                   | Structs and their usage  |
+| [c_references](0x02/snippets/c_references.cpp)             | References and aliases   |
+| [d_call_by_ref](0x02/snippets/d_call_by_ref.cpp)           | Parameter passing        |
+
+
+| [c_copy_assignment](0x02/snippets/c_copy_assignment.cpp)  | Copy assignment and object initialization |
