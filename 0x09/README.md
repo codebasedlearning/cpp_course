@@ -33,15 +33,16 @@ Are all elements properly destroyed or are there memory leaks?
 
 ### 👉 Task 'Banrockburn'
 
-Application of shared-ptr and possibly weak-ptr
+Application of shared-ptr and weak-ptr
 
-Implement a generic doubly linked list with smart pointers instead of raw pointers.
-- Design a template class `Node` with data, a pointer to the next element 
-  and one to the previous element.
+Implement a generic doubly linked list with smart pointers instead of raw pointers. In detail:
+- Design a template class `Node` with data, a (smart) pointer to the `next` element 
+  and s (smart) pointer `prev` to the previous element. 
 - Implement a template class `List` for a list with a `root` pointer to the first,
   and a `tail` pointer to the last element.
+- Use `shared_ptr` and `weak_ptr`, such that all Nodes are properly destroyed.
 - Implement a `+=`-operator for appending new elements.
-- Write meaningful test code and iterate over a sample list (forward and backward).
+- Write meaningful test code and iterate over a sample list forward and backward.
 
 <hr>
 
