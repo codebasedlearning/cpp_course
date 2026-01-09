@@ -360,7 +360,7 @@ void outlook_concepts() {
 
 template <int N>
 struct fib {
-    static constexpr int value=fib<N-1>::value+fib<N-2>::value;
+    static constexpr int value=fib<N-1>::value + fib<N-2>::value;
 };
 
 template <>

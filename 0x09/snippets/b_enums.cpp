@@ -13,13 +13,13 @@
 using std::cout, std::endl;
 using std::string, std::string_view;
 
-void using_shared_pointers();
+void using_enums();
 void use_scoped_enums();
 
 int main() {
     cout << endl << "--- " << __FILE__ << " ---" << endl << endl;
 
-    using_shared_pointers();
+    using_enums();
     use_scoped_enums();
 
     return EXIT_SUCCESS;
@@ -39,7 +39,7 @@ enum COLOR { RED, GREEN, BLUE };
 enum SYMBOL { CROSS=1, SPADE, HEART=11, DIAMOND };
 enum CARD { NINE=9, ACE=11, JACK=10, QUEEN=10 };
 
-void using_shared_pointers() {
+void using_enums() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
     cout << " 1| Colors:  { r:" << RED << ", g:" << GREEN << ", b:" << BLUE << " }" << endl;
