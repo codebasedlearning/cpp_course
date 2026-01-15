@@ -17,12 +17,14 @@ using std::string, std::string_view;
 using std::function;
 
 double approx(double x0, const function<double(double)> &f, double eps) {
-    double x_new = f(x0);
-    if (abs(x_new - x0) < eps) {
-        return x0;
+    double x_old = x0;
+    double x_new = f(x_old);
+    while (std::abs(x_new - x_old) > eps) {
+        x_old = x_new;
+        x_new = f(x_old);
     }
-    return approx(x_new, f, eps);
-};
+    return x_new;
+}
 
 int main() {
     cout << endl << "--- " << __FILE__ << " ---" << endl << endl;

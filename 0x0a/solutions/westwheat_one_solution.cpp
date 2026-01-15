@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <mutex>
 #include <vector>
+#include <array>
 #include <thread>
 
 using std::cout, std::endl, std::ostream;

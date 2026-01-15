@@ -61,7 +61,7 @@ for a fixed `n`, e.g., for `n=4` we have [1,4,6,4,1].
 
 Threads, Mutex, ref
 
-Start two threads. Each fills a (global) `int`-vector with `n` (random) numbers (via `push_back`).
+Start two threads. Each fills a (global) `int`-vector with `n` (any or random) numbers (via `push_back`).
 - Start with a small `n<3` and do not protect access to the vector. Does it work?
 - Increase the number `n` until the program crashes or is frozen. Why is that?
 - Protect the vector during insertion with a `lock_guard` (thread-safe). Does it work again now?

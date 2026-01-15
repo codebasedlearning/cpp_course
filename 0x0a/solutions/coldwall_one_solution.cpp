@@ -15,7 +15,7 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
-
+#include <algorithm>
 
 using std::cout, std::endl, std::ostream;
 using std::string, std::string_view;
@@ -33,7 +33,8 @@ void work(sum_t start, sum_t end, sum_t &sum) {
     sum += temp;
 }
 
-sum_t start_array_of_threads(sum_t n, size_t num_threads) {
+// assume n % num_threads == 0
+sum_t calc_sum(sum_t n, size_t num_threads) {
     sum_t part = n / num_threads;
 
     vector<thread> threads;
@@ -61,7 +62,7 @@ int main() {
 
     auto tm_start = std::chrono::high_resolution_clock::now();
 
-    auto sum = start_array_of_threads(10000000, 10);
+    auto sum = calc_sum(10000000, 10);
 
     std::chrono::duration<double> elapsed = std::chrono::high_resolution_clock::now() - tm_start;
 

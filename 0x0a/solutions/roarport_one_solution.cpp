@@ -24,7 +24,7 @@ int main() {
     cout << " 3| 7 in [" << a << "," << b << "]? " << is_within(7) << endl;
 
     int z{3};
-    auto neg_z = [&]() -> void { z = -z; };
+    auto neg_z = [&z]() -> void { z = -z; };
 
     cout << " 4| z = " << z << endl;
     neg_z();
