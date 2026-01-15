@@ -25,6 +25,7 @@ using std::vector;
 
 void using_string_streams();
 void using_print_and_format();
+void preparing_print_and_format();
 void using_file_streams();
 
 int main() {
@@ -32,6 +33,7 @@ int main() {
 
     using_string_streams();
     using_print_and_format();
+    preparing_print_and_format();
     using_file_streams();
 
     return EXIT_SUCCESS;
@@ -170,6 +172,45 @@ void using_print_and_format() {
         println("32| '{:*^10}'", "Ho");     // "****Ho****"
         println("33| '{:_<10}'", "Ho");     // "Ho________"
     }
+}
+
+struct A {
+    int n;
+};
+
+template <>
+struct std::formatter<A> {
+    constexpr auto parse(std::format_parse_context& ctx) {
+        return ctx.begin();  // accept everything (or parse if you want)
+    }
+
+    template <typename FormatContext>
+    auto format(const A& f, FormatContext& ctx) const {
+        return std::format_to(ctx.out(), "({})", f.n);
+    }
+};
+
+struct B {
+    int m;
+};
+
+template <>
+struct std::formatter<B> : std::formatter<std::string_view> {
+    template <typename FormatContext>
+    auto format(const B& f, FormatContext& ctx) const {
+        std::string tmp = std::format("({})", f.m);
+        return std::formatter<std::string_view>::format(tmp, ctx);
+    }
+};
+
+void preparing_print_and_format() {
+    cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
+
+    A a{42};
+    println(" 1| '{}'", a);
+
+    B b{23};
+    println(" 2| '{:10}'", b);
 }
 
 void using_file_streams() {

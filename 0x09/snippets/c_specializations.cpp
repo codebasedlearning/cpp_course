@@ -217,7 +217,7 @@ void specialized_vector() {
     d3 = v3;                                // Why does it work?
     cout << " 3| size(d3)=" << sizeof(d3) << ", d3[0]=" << d3[0] << endl;
 
-    // v3 = v0;
+    // v3 = v1;
 
     vector_special3d<char> c3{'a','b','c'};
     cout << " 4| size(c3)=" << sizeof(c3) << ", c3[0]='" << c3[0] << "'" << endl;
