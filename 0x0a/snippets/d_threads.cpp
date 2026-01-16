@@ -109,7 +109,7 @@ void start_thread_with_timing() {
 }
 
 void download(milliseconds ms) {
-    cout << " a| " << ts() << " | download started, load for " << ms << "ms" << endl;
+    cout << " a| " << ts() << " | download started, load for " << ms << endl;
     do_something_important(ms);
     cout << " b| " << ts() << " | download done." << endl;
 }
@@ -156,7 +156,7 @@ void start_array_of_threads() {
 }
 
 void simulation(milliseconds ms, int init, int& result) {
-    cout << " a| " << ts() << " | simulation started, runs about " << ms << "ms" << endl;
+    cout << " a| " << ts() << " | simulation started, runs about " << ms << endl;
     do_something_important(ms);
     result = init * 2;
     cout << " b| " << ts() << " | simulation done." << endl;
