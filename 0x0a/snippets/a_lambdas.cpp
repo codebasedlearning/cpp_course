@@ -103,6 +103,8 @@ void simple_lambdas() {
      *  to the compiler with "auto". The syntax "->" follows the mathematical way of writing x->x^2.
      */
     auto less = [](int a, int b) -> bool { return a < b; };
+    // int n{1};
+    // auto less{ [](int a, int b) -> bool { return a < b; } };
 
     /*
      * Use a lambda expression like a function.
