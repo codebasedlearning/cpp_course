@@ -44,16 +44,23 @@ void f(const string &s)  {
     cout << " a| f(&), s='" << s << "'" << endl;
 }
 
-void f(const string &&s) {
+void f(string &&s) {
     cout << " b| f(&&), s='" << s << "'" << endl;
 }
+
+/*
+ * T& → lvalue reference
+ * T&& → rvalue reference
+ * const T& → universal read-only view
+ * const T&& → rvalues accepted, but moving forbidden... (usually pointless)
+ */
 
 void lvalue_and_rvalue() {
     cout << "\n" << __func__ << "\n" << string(string_view(__func__).size(), '=') << endl;
 
-    string a{"Alice"};                      // 'a' is an lvalue, because it lives somewhere permanently.
-    f(a);                                   // Call f with lvalue.
-    f(bob());                               // Call f with rvalue (temporary) -> && syntax.
+    string a{"Alice"};                      // 'a' is an lvalue, it has a name and a stable identity (an address) for its lifetime
+    f(a);                                   // selects overload 'f(const string&)' (binds to lvalue)
+    f(bob());                               // selects overload 'f(string&&)' (binds to rvalue temporary)
 }
 
 /*
