@@ -245,7 +245,7 @@ void working_with_iterators() {
 
     // version 4 - special
     set s{1, 1, 2, 3};
-    // auto its = std::ranges::find(s,2);   // Why not?
+    // auto its = std::ranges::find(s,2);   // Why not? (think of complexity)
     auto its = s.find(2);
     cout << " 4| find-version s: 2 in s: " << (its != s.end()) << endl;
 

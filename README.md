@@ -56,7 +56,7 @@ to [me](mailto:info@codebasedlearning.dev).
 | Snippet       | Content                   |
 |:--------------|:--------------------------|
 | a_consts      | `const`-related concepts  |
-| b_structs]    | Structs and their usage   |
+| b_structs     | Structs and their usage   |
 | c_references  | References and aliases    |
 | d_call_by_ref | Parameter passing         |
 | e_exception   | Exception handling        |

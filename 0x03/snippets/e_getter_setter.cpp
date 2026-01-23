@@ -82,7 +82,7 @@ class set_card {
     // An explanation of 'move' follows, but in a nutshell (!):
     //    – We have to copy string data, so one way is to copy from a const reference,
     //      the other is using move to reuse resources. More can be read here
-    //      https://clang.llvm.org/extra/clang-tidy/checks/modernize-pass-by-value.html
+    //      https://clang.llvm.org/extra/clang-tidy/checks/modernize/pass-by-value.html
     set_card(int id, string name, string number, unsigned int age)
             : id_{id}, name_{std::move(name)}, number_{std::move(number)}, age_{age} { }
 
