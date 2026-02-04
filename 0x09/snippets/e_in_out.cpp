@@ -16,6 +16,7 @@
 #include <vector>
 #include <iomanip>
 #include <format>
+#include <print>
 
 using std::cout, std::endl;
 using std::string, std::string_view;

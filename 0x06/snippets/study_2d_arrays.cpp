@@ -15,6 +15,7 @@
 #include <string>
 #include <string_view>
 #include <cstdlib>
+#include <memory>
 
 using std::cout, std::cerr, std::endl, std::ostream;
 using std::string, std::string_view;

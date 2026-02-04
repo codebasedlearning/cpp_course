@@ -9,6 +9,7 @@
 #include <string_view>
 #include <cstdlib>
 #include <unordered_map>
+#include <memory>
 
 using std::cout, std::endl, std::ostream;
 using std::string, std::string_view;

@@ -5,7 +5,7 @@
  * Defines default values and namespace for UI-related functions.
  */
 
-#include <iostream>
+#include <print>
 #include "d_ui_lib.hpp"                     // note: "file", looks in the including file’s directory first
 
 double default_alpha = 0.3;                 // implementation of "extern" variable

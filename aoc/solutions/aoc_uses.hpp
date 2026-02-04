@@ -31,6 +31,7 @@
 #include <cstdlib>
 #include <utility>
 #include <cassert>
+#include <cmath>
 
 // only the absolut minimum
 using std::string, std::string_view;
